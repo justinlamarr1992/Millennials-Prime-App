@@ -4,6 +4,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { useState } from "react";
 
@@ -25,9 +26,17 @@ export default function App() {
   };
 
   const submitHandler = (text) => {
-    setTodos((prevTodos) => {
-      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
-    });
+    if (text.length > 3) {
+      setTodos((prevTodos) => {
+        return [{ text: text, key: Math.random().toString() }, ...prevTodos];
+      });
+    } else {
+      Alert.alert(
+        "Check the List",
+        "Your ToDo's need to be over 3 characters long",
+        [{ text: "Understood", onPress: () => console.log("alert closed") }]
+      );
+    }
   };
 
   return (
