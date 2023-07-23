@@ -7,6 +7,9 @@ import {
 } from "react-native";
 import { useState } from "react";
 
+import Header from "./components/Header";
+import ToDoItem from "./components/ToDoItem";
+
 export default function App() {
   const [todos, setTodos] = useState([
     { text: "Build App", key: "1" },
@@ -14,15 +17,24 @@ export default function App() {
     { text: "Fish for Clients", key: "3" },
   ]);
 
+  const pressHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.key != key);
+    });
+  };
+
   return (
     <View style={styles.container}>
+      <Header />
       {/* Header */}
       <View style={styles.content}>
         {/* ToDo Form */}
         <View style={styles.list}>
           <FlatList
             data={todos}
-            renderItem={({ item }) => <Text>{item.text}</Text>}
+            renderItem={({ item }) => (
+              <ToDoItem item={item} pressHandler={pressHandler} />
+            )}
           />
         </View>
       </View>
@@ -38,5 +50,11 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 20,
     // alignItems: "center",
     // justifyContent: "center",
+  },
+  content: {
+    padding: 40,
+  },
+  list: {
+    marginTop: 20,
   },
 });
