@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 
 export default function App() {
@@ -14,25 +20,24 @@ export default function App() {
     { name: "diddy kong", id: "9" },
   ]);
 
+  const pressHandler = (id) => {
+    console.log(id);
+    setPeople((prevPeople) => {
+      return prevPeople.filter((person) => person.id != id);
+    });
+  };
+
   return (
     <View style={styles.container}>
-      {/* Better for performance and auto looks for key prop*/}
       <FlatList
-        // This is if your "key is another name"
         keyExtractor={(item) => item.id}
-        // numColumns={2}
         data={people}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-      />
-
-      {/* 
-      <ScrollView>
-        {people.map((item) => (
-          <View key={item.key}>
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => pressHandler(item.id)}>
             <Text style={styles.item}>{item.name}</Text>
-          </View>
-        ))}
-      </ScrollView> */}
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
