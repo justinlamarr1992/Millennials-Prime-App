@@ -4,6 +4,8 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
   Alert,
 } from "react-native";
 import { useState } from "react";
@@ -40,22 +42,29 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      {/* Header */}
-      <View style={styles.content}>
-        {/* ToDo Form */}
-        <AddToDo submitHandler={submitHandler} />
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({ item }) => (
-              <ToDoItem item={item} pressHandler={pressHandler} />
-            )}
-          />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+        console.log("Dismissed Keyboard");
+      }}
+    >
+      <View style={styles.container}>
+        <Header />
+        {/* Header */}
+        <View style={styles.content}>
+          {/* ToDo Form */}
+          <AddToDo submitHandler={submitHandler} />
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <ToDoItem item={item} pressHandler={pressHandler} />
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
