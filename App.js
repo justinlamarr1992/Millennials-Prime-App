@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import Header from "./components/Header";
 import ToDoItem from "./components/ToDoItem";
+import AddToDo from "./components/AddToDo";
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -23,12 +24,19 @@ export default function App() {
     });
   };
 
+  const submitHandler = (text) => {
+    setTodos((prevTodos) => {
+      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Header />
       {/* Header */}
       <View style={styles.content}>
         {/* ToDo Form */}
+        <AddToDo submitHandler={submitHandler} />
         <View style={styles.list}>
           <FlatList
             data={todos}
