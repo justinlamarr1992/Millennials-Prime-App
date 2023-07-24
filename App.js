@@ -79,8 +79,12 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
+    backgroundColor: "#fffd9b",
+    flex: 1,
   },
   list: {
+    flex: 1,
     marginTop: 20,
+    backgroundColor: "#fff",
   },
 });
