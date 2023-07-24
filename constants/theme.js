@@ -34,6 +34,10 @@ const FONT = {
   bold: "DMBold",
 };
 
+const FONTFAMILY = {
+  //  --font: "Inter", sans-serif;
+};
+
 const SIZES = {
   xSmall: 10,
   small: 12,

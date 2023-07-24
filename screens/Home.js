@@ -13,7 +13,7 @@ import {
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text style={styles.titleText}>Home</Text>
     </View>
   );
 }
@@ -21,6 +21,10 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
+  },
+  titleText: {
+    fontFamily: "inter-bold",
+    fontSize: 18,
   },
 });
 
