@@ -14,6 +14,9 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 8,
     lineHeight: 20,
   },
+  testHeader: {
+    backgroundColor: "#020101",
+  },
 });
 
 // const COLORS = {
