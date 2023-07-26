@@ -23,24 +23,21 @@ export default function Navigation() {
         //   Default header for pages not speified
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#f4511e",
+            backgroundColor: "#fffd9b",
           },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
+          headerTintColor: "#020101",
         }}
       >
         <Stack.Screen
           name="Home"
           component={Home}
-          //   options={{
-          //     headerTitle: (props) => <LogoTitle {...props} />,
-          //     headerStyle: {
-          //       backgroundColor: "#611821",
-          //     },
-          //     headerTintColor: "#ffffff",
-          //   }}
+          options={{
+            headerTitle: (props) => <LogoTitle {...props} />,
+            headerStyle: {
+              backgroundColor: "#611821",
+            },
+            headerTintColor: "#ffffff",
+          }}
         />
         <Stack.Screen
           name="ReviewDetails"
