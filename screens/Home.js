@@ -26,6 +26,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
+      {/* <Button onPress={()=> }/> */}
       <FlatList
         data={reviews}
         renderItem={({ item }) => (

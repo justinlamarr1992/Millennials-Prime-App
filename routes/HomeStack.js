@@ -10,6 +10,8 @@ import { globalStyles } from "../styles/global";
 
 import Logo from "../assets/images/MillennialsPrimeLogoNB.png";
 
+import DrawerNavigation from "./DrawerNavigation";
+
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,7 @@ export default function Navigation() {
 
   return (
     <NavigationContainer>
+      <DrawerNavigation />
       <Stack.Navigator
         //   Default header for pages not speified
         screenOptions={{
