@@ -35,39 +35,38 @@ export default function DrawerNavigation() {
         component={Home}
         style={styles.drawer}
         // Connected from custom Header
-        // options={{ headerTitle: () => <Header /> }}
-        options={({ navigation }) => {
-          return {
-            headerTitle: () => (
-              <Header navigation={navigation} title="Home Page" />
-            ),
-          };
-        }}
-        // Better looking way
-        // options={{
-        //   headerTitle: (props) => <LogoTitle {...props} />,
-        //   headerStyle: {
-        //     backgroundColor: "#611821",
-        //   },
-        //   headerTintColor: "#ffffff",
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header navigation={navigation} title="Home Page" />
+        //     ),
+        //   };
         // }}
+        // Better looking way
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       />
       <Drawer.Screen
         name="About"
         component={About}
-        // options={{
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
-        options={({ navigation }) => {
-          return {
-            headerTitle: () => (
-              <Header navigation={navigation} title="About Page" />
-            ),
-          };
+        options={{
+          headerStyle: {
+            backgroundColor: "#8e202b",
+          },
+          headerTintColor: "#ffffff",
         }}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header navigation={navigation} title="About Page" />
+        //     ),
+        //   };
+        // }}
       />
     </Drawer.Navigator>
   );

@@ -8,8 +8,8 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       {/* <StackNavigator /> */}
-      <DrawerNavigation />
-      {/* <TabNavigator /> */}
+      {/* <DrawerNavigation /> */}
+      <TabNavigator />
     </NavigationContainer>
   );
 }
