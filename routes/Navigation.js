@@ -7,8 +7,8 @@ import DrawerNavigation from "./DrawerNavigator";
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <StackNavigator />
-      {/* <DrawerNavigation /> */}
+      {/* <StackNavigator /> */}
+      <DrawerNavigation />
       {/* <TabNavigator /> */}
     </NavigationContainer>
   );
