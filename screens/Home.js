@@ -10,6 +10,7 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+import Card from "../shared/Card";
 import { globalStyles } from "../styles/global";
 
 export default function Home({ navigation }) {
@@ -31,12 +32,14 @@ export default function Home({ navigation }) {
         data={reviews}
         renderItem={({ item }) => (
           <TouchableOpacity>
-            <Text
-              style={globalStyles.titleText}
-              onPress={() => navigation.navigate("ReviewDetails", { item })}
-            >
-              {item.title}
-            </Text>
+            <Card>
+              <Text
+                style={globalStyles.titleText}
+                onPress={() => navigation.navigate("ReviewDetails", { item })}
+              >
+                {item.title}
+              </Text>
+            </Card>
           </TouchableOpacity>
         )}
       />
