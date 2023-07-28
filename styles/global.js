@@ -19,6 +19,16 @@ export const globalStyles = StyleSheet.create({
   },
 });
 
+export const images = {
+  ratings: {
+    1: require("../assets/images/Tutorial/rating-1.png"),
+    2: require("../assets/images/Tutorial/rating-2.png"),
+    3: require("../assets/images/Tutorial/rating-3.png"),
+    4: require("../assets/images/Tutorial/rating-4.png"),
+    5: require("../assets/images/Tutorial/rating-5.png"),
+  },
+};
+
 // const COLORS = {
 //    Background
 //   background: "#F7F7F7",
