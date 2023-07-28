@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { globalStyles } from "../styles/global";
 
 export default function Header({ navigation, title }) {
   const openMenu = () => {
@@ -8,38 +9,26 @@ export default function Header({ navigation, title }) {
   };
 
   return (
-    <View style={styles.header}>
-      <MaterialIcons
+    <ImageBackground
+      source={require("../assets/images/Tutorial/game_bg.png")}
+      style={globalStyles.header}
+    >
+      {/* <MaterialIcons
         name="menu"
         size={28}
         onPress={openMenu}
         style={styles.icon}
-      />
-      <View>
+      /> */}
+      <View style={globalStyles.headerTitle}>
         {/* Would be custom Header */}
-        <Text style={styles.headerText}>{title}</Text>
+        <Image
+          style={globalStyles.headerImage}
+          source={require("../assets/images/MillennialsPrimeLogoNB.png")}
+        />
+        <Text style={globalStyles.headerText}>{title}</Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#611821",
-  },
-  headerText: {
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "#ffffff",
-    letterSpacing: 1,
-  },
-  icon: {
-    // position: "absolute",
-    // left: 16,
-  },
-});
+const styles = StyleSheet.create({});

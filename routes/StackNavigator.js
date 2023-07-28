@@ -5,6 +5,7 @@ import Logo from "../assets/images/MillennialsPrimeLogoNB.png";
 
 import Home from "../screens/Home";
 import ReviewDetails from "../screens/ReviewDetails";
+import Header from "../shared/Header";
 
 import { globalStyles } from "../styles/global";
 
@@ -29,12 +30,19 @@ export default function StackNavigator() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{
-          headerTitle: (props) => <LogoTitle {...props} />,
-          headerStyle: {
-            backgroundColor: "#611821",
-          },
-          headerTintColor: "#ffffff",
+        // options={{
+        //   headerTitle: (props) => <LogoTitle {...props} />,
+        //   headerStyle: {
+        //     backgroundColor: "#611821",
+        //   },
+        //   headerTintColor: "#ffffff",
+        // }}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => (
+              <Header navigation={navigation} title="Millennial's Prime" />
+            ),
+          };
         }}
       />
       <Stack.Screen
