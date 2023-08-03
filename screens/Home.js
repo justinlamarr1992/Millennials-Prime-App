@@ -25,6 +25,16 @@ export default function Home({ navigation }) {
     { title: "Title 3", rating: 3, body: "Body 3333333", key: "3" },
   ]);
 
+  // HOW TO ADD FUTURE POST IN TO SOCIAL
+  const addReview = (review) => {
+    // Not best way to producw a key
+    review.key = Math.random().toString();
+    setReviews((currentReviews) => {
+      return [review, ...currentReviews];
+    });
+    setModalOpen(false);
+  };
+
   // const pressHandler = () => {
   //   navigation.navigate("ReviewDetails");
   //   // navigation.push("ReviewDetails");
@@ -33,15 +43,20 @@ export default function Home({ navigation }) {
   return (
     <View style={globalStyles.container}>
       <Modal visible={modalOpen} animationType="slide">
-        <View style={globalStyles.modalContent}>
-          <MaterialIcons
-            name="close"
-            size={24}
-            style={{ ...globalStyles.modalToggle, ...globalStyles.modalClose }}
-            onPress={() => setModalOpen(false)}
-          />
-          <ReviewForm />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={globalStyles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{
+                ...globalStyles.modalToggle,
+                ...globalStyles.modalClose,
+              }}
+              onPress={() => setModalOpen(false)}
+            />
+            <ReviewForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
       <MaterialIcons
         name="add"
