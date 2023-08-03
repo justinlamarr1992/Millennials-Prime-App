@@ -12,8 +12,9 @@ import {
   Modal,
 } from "react-native";
 import Card from "../shared/Card";
-import { globalStyles } from "../styles/global";
+import ReviewForm from "./ReviewForm";
 
+import { globalStyles } from "../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Home({ navigation }) {
@@ -36,10 +37,10 @@ export default function Home({ navigation }) {
           <MaterialIcons
             name="close"
             size={24}
-            style={globalStyles.modalToggle}
+            style={{ ...globalStyles.modalToggle, ...globalStyles.modalClose }}
             onPress={() => setModalOpen(false)}
           />
-          <Text>Hello this is the Modal</Text>
+          <ReviewForm />
         </View>
       </Modal>
       <MaterialIcons
