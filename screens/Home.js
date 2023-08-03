@@ -9,11 +9,15 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Modal,
 } from "react-native";
 import Card from "../shared/Card";
 import { globalStyles } from "../styles/global";
 
+import { MaterialIcons } from "@expo/vector-icons";
+
 export default function Home({ navigation }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
     { title: "Title 1", rating: 5, body: "Body 1111111", key: "1" },
     { title: "Title 2", rating: 4, body: "Body 2222222", key: "2" },
@@ -27,6 +31,24 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
+      <Modal visible={modalOpen} animationType="slide">
+        <View style={globalStyles.modalContent}>
+          <MaterialIcons
+            name="close"
+            size={24}
+            style={globalStyles.modalToggle}
+            onPress={() => setModalOpen(false)}
+          />
+          <Text>Hello this is the Modal</Text>
+        </View>
+      </Modal>
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={globalStyles.modalToggle}
+        onPress={() => setModalOpen(true)}
+      />
+
       {/* <Button onPress={()=> }/> */}
       <FlatList
         data={reviews}

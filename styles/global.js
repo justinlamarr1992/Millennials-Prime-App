@@ -42,6 +42,20 @@ export const globalStyles = StyleSheet.create({
     height: 26,
     marginVertical: 2,
   },
+  modalContent: { flex: 1, padding: 20, paddingTop: 40 },
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#b9a054",
+    backgroundColor: "#fffd9b",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 20,
+    marginBottom: 0,
+  },
 });
 
 export const images = {

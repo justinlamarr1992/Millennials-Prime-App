@@ -30,20 +30,20 @@ export default function StackNavigator() {
       <Stack.Screen
         name="Home"
         component={Home}
-        // options={{
-        //   headerTitle: (props) => <LogoTitle {...props} />,
-        //   headerStyle: {
-        //     backgroundColor: "#611821",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
-        options={({ navigation }) => {
-          return {
-            headerTitle: () => (
-              <Header navigation={navigation} title="Millennial's Prime" />
-            ),
-          };
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
         }}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header navigation={navigation} title="Millennial's Prime" />
+        //     ),
+        //   };
+        // }}
       />
       <Stack.Screen
         name="ReviewDetails"
