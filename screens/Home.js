@@ -10,6 +10,7 @@ import {
   Keyboard,
   Alert,
   Modal,
+  ScrollView,
 } from "react-native";
 import Card from "../shared/Card";
 import ReviewForm from "./ReviewForm";
@@ -76,41 +77,22 @@ export default function Home({ navigation }) {
       /> */}
 
       {/* <Button onPress={()=> }/> */}
-      <FlatList
+      {/* <FlatList
         data={post}
         renderItem={({ item }) => (
           <PostComponent title={item.title} description={item.description} />
         )}
-      />
-      <Ad />
-      {/* <FlatList
-        data={reviews}
-        renderItem={({ item }) => (
-          <TouchableOpacity>
-            <Card>
-              <Text
-                style={globalStyles.titleText}
-                onPress={() => navigation.navigate("ReviewDetails", { item })}
-              >
-                {item.title}
-              </Text>
-            </Card>
-          </TouchableOpacity>
-        )}
       /> */}
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1 }}>
+          <PostComponent
+            title={post[0].title}
+            description={post[0].description}
+          />
+          <Ad />
+        </View>
+      </ScrollView>
     </View>
   );
 }
-
-//  <TouchableWithoutFeedback
-//    onPress={() => {
-//      Keyboard.dismiss();
-//      console.log("Dismissed Keyboard");
-//    }}
-//  >
-//    <View style={styles.container}>
-//      <Header />
-//      {/* Header */}
-//      <Text>Starting Over</Text>
-//    </View>
-//  </TouchableWithoutFeedback>;
