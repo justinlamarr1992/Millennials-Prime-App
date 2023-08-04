@@ -63,6 +63,84 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 6,
   },
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginTop: 6,
+    textAlign: "center",
+  },
+  button: {
+    borderRadius: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    backgroundColor: "#611821",
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    fontSize: 16,
+    textAlign: "center",
+  },
+  post: {
+    borderRadius: 20,
+    elevation: 3,
+    backgroundColor: "#8e202b",
+    shadowColor: "#BD2932",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    marginHorizontal: 4,
+    marginVertical: 6,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
+  postContent: {
+    marginVertical: 5,
+  },
+  primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
+  postVideo: {
+    width: "100%",
+    height: 250,
+    borderRadius: 10,
+  },
+  postTitle: {
+    color: "#ffffff",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  postDescription: {
+    color: "#8F92A1",
+    fontSize: 12,
+  },
+  postLikes: {
+    marginBottom: 20,
+  },
+  adPost: {
+    borderRadius: 20,
+    elevation: 3,
+    backgroundColor: "#ddcd76",
+    shadowColor: "#fffd9b",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    marginHorizontal: 4,
+    marginVertical: 6,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
+
+  // --p-bshade: 0 0px 25px 1px #611821;
+  // --p2-bshade: 0 0px 25px 1px #b9a054;
+
+  adTitle: {
+    color: "#ffffff",
+    fontWeight: "bold",
+    fontSize: 50,
+    textAlign: "center",
+  },
+  adDescription: {},
 });
 
 export const images = {
