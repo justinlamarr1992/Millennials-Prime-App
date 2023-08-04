@@ -1,9 +1,12 @@
 import { StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 50,
+    backgroundColor: "#f7f7f7",
   },
   titleText: {
     fontFamily: "inter-bold",
@@ -18,17 +21,25 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "#020101",
   },
   header: {
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#611821",
-    flex: 1,
+    position: "absolute",
+    alignSelf: "center",
+    // left: 0,
+    // top: 0,
+    // right: 0,
+    // bottom: -75,
+    width: 425,
+    // height: "100%",
+    height: 135,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // justifyContent: "center",
+    borderRadius: 50,
+    // marginTop: 50,
+    paddingTop: 35,
   },
   headerText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
     color: "#ffffff",
     letterSpacing: 1,
   },
@@ -38,9 +49,9 @@ export const globalStyles = StyleSheet.create({
   },
   headerTitle: { flexDirection: "column", alignItems: "center" },
   headerImage: {
-    width: 26,
-    height: 26,
-    marginVertical: 2,
+    width: 50,
+    height: 50,
+    marginVertical: 5,
   },
   modalContent: { flex: 1, padding: 20, paddingTop: 40 },
   modalToggle: {
@@ -83,14 +94,22 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
+  postContainer: {
+    flex: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.9,
+    shadowRadius: 3,
+  },
   post: {
     borderRadius: 20,
-    elevation: 3,
-    backgroundColor: "#8e202b",
+    elevation: 5,
+    // backgroundColor: "#8e202b",
+
     shadowColor: "#BD2932",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    // shadowOffset: { width: 0, height: 0 },
+    // shadowOpacity: 0.9,
+    // shadowRadius: 5,
     marginHorizontal: 4,
     marginVertical: 6,
     paddingHorizontal: 20,
@@ -101,9 +120,11 @@ export const globalStyles = StyleSheet.create({
   },
   primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
   postVideo: {
-    width: "100%",
-    height: 250,
+    width: "auto",
+    height: 188,
     borderRadius: 10,
+    // height: "50%",
+    // width: 100,
   },
   postTitle: {
     color: "#ffffff",
@@ -119,12 +140,12 @@ export const globalStyles = StyleSheet.create({
   },
   adPost: {
     borderRadius: 20,
-    elevation: 3,
+    elevation: 5,
     backgroundColor: "#ddcd76",
     shadowColor: "#fffd9b",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowRadius: 5,
     marginHorizontal: 4,
     marginVertical: 6,
     paddingHorizontal: 20,
@@ -141,6 +162,12 @@ export const globalStyles = StyleSheet.create({
     textAlign: "center",
   },
   adDescription: {},
+  yellowGlow: {
+    shadowColor: "#fffd9b",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 5,
+  },
 });
 
 export const images = {

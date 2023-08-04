@@ -3,13 +3,17 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Video, ResizeMode } from "expo-av";
 import videoFile from "../assets/videos/video.mp4";
 import { globalStyles } from "../styles/global";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PostComponent({ title, description }) {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
 
   return (
-    <View style={globalStyles.post}>
+    <LinearGradient
+      style={globalStyles.post}
+      colors={["#bd2932", "#a5242f", "#8e202b", "#771c26", "#611821"]}
+    >
       <Text style={{ ...globalStyles.primeTitle, ...globalStyles.postContent }}>
         Prime News
       </Text>
@@ -34,7 +38,7 @@ export default function PostComponent({ title, description }) {
       {/* <Text style={{ ...globalStyles.postLikes, ...globalStyles.postContent }}>
         Likes
       </Text> */}
-    </View>
+    </LinearGradient>
   );
 }
 

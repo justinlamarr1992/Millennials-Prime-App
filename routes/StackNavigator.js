@@ -19,31 +19,40 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator
       //   Default header for pages not speified
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#fffd9b",
-        },
-        headerTintColor: "#020101",
+      options={({ navigation }) => {
+        return {
+          headerTitle: () => (
+            <Header navigation={navigation} title="Millennial's Prime" />
+          ),
+        };
       }}
     >
       {/* Home Stack Navigator */}
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Home"
         component={Home}
         options={{
           headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
             backgroundColor: "#611821",
+            height: 200,
+            width: 10,
+            borderBottomRightRadius: 20,
+            borderBottomLeftRadius: 20,
           },
           headerTintColor: "#ffffff",
         }}
-        // options={({ navigation }) => {
-        //   return {
-        //     headerTitle: () => (
-        //       <Header navigation={navigation} title="Millennial's Prime" />
-        //     ),
-        //   };
-        // }}
+      /> */}
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => (
+              <Header navigation={navigation} title="Millennial's Prime" />
+            ),
+          };
+        }}
       />
       <Stack.Screen
         name="ReviewDetails"
@@ -54,6 +63,8 @@ export default function StackNavigator() {
             backgroundColor: "#8e202b",
           },
           headerTintColor: "#ffffff",
+          // headerBackground:,
+          hideWhenScrolling: true,
         }}
       />
     </Stack.Navigator>

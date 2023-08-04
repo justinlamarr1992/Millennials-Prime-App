@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { globalStyles } from "../styles/global";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Header({ navigation, title }) {
   const openMenu = () => {
@@ -9,16 +10,15 @@ export default function Header({ navigation, title }) {
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/images/Tutorial/game_bg.png")}
+    <View
       style={globalStyles.header}
+      // style={globalStyles.header}
     >
-      {/* <MaterialIcons
-        name="menu"
-        size={28}
-        onPress={openMenu}
-        style={styles.icon}
-      /> */}
+      <LinearGradient
+        colors={["#bd2932", "#a5242f", "#8e202b", "#771c26", "#611821"]}
+        style={StyleSheet.absoluteFill}
+      />
+      {/* <Header {...props} style={{ backgroundColor: "transparent" }} /> */}
       <View style={globalStyles.headerTitle}>
         {/* Would be custom Header */}
         <Image
@@ -27,7 +27,7 @@ export default function Header({ navigation, title }) {
         />
         <Text style={globalStyles.headerText}>{title}</Text>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
 

@@ -76,16 +76,8 @@ export default function Home({ navigation }) {
         onPress={() => setModalOpen(true)}
       /> */}
 
-      {/* <Button onPress={()=> }/> */}
-      {/* <FlatList
-        data={post}
-        renderItem={({ item }) => (
-          <PostComponent title={item.title} description={item.description} />
-        )}
-      /> */}
-
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ flex: 1 }}>
+        <View style={globalStyles.postContainer}>
           <PostComponent
             title={post[0].title}
             description={post[0].description}
