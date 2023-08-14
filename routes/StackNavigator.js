@@ -4,7 +4,7 @@ import { Image } from "react-native";
 import Logo from "../assets/images/MillennialsPrimeLogoNB.png";
 
 import Home from "../screens/Home";
-import ReviewDetails from "../screens/ReviewDetails";
+import TestComps from "../screens/TestComps";
 import Header from "../shared/Header";
 
 import { globalStyles } from "../styles/global";
@@ -19,12 +19,11 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator
       //   Default header for pages not speified
-      options={({ navigation }) => {
-        return {
-          headerTitle: () => (
-            <Header navigation={navigation} title="Millennial's Prime" />
-          ),
-        };
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerTintColor: "#020101",
       }}
     >
       {/* Home Stack Navigator */}
@@ -49,14 +48,17 @@ export default function StackNavigator() {
         options={({ navigation }) => {
           return {
             headerTitle: () => (
-              <Header navigation={navigation} title="Millennial's Prime" />
+              <Header
+                navigation={navigation}
+                title="Welcome to Millennial's Prime"
+              />
             ),
           };
         }}
       />
       <Stack.Screen
-        name="ReviewDetails"
-        component={ReviewDetails}
+        name="TestComps"
+        component={TestComps}
         options={{
           title: "It Should Work",
           headerStyle: {

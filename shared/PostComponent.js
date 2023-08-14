@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View, Button } from "react-native";
+import { WebView } from "react-native-webview";
 import { Video, ResizeMode } from "expo-av";
 import videoFile from "../assets/videos/video.mp4";
 import { globalStyles } from "../styles/global";
@@ -17,7 +18,36 @@ export default function PostComponent({ title, description }) {
       <Text style={{ ...globalStyles.primeTitle, ...globalStyles.postContent }}>
         Prime News
       </Text>
-      <Video
+      <WebView
+        // source={{
+        //   uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
+        // }}
+        source={{
+          uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
+        }}
+        // source={{
+        //   uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+        // }}
+        // source={{ uri: "https://www.youtube.com/embed/cqyziA30whE" }}
+        style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
+      />
+
+      {/* <Video
+        ref={video}
+        style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
+        source={{
+          uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
+        }}
+        // source={{
+        //   uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+        // }}
+        useNativeControls
+        resizeMode={ResizeMode.CONTAIN}
+        isLooping
+        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+      /> */}
+
+      {/* <Video
         ref={video}
         style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
         source={videoFile}
@@ -25,7 +55,7 @@ export default function PostComponent({ title, description }) {
         resizeMode={ResizeMode.CONTAIN}
         isLooping
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
-      />
+      /> */}
 
       <Text style={{ ...globalStyles.postTitle, ...globalStyles.postContent }}>
         {title}
@@ -42,21 +72,14 @@ export default function PostComponent({ title, description }) {
   );
 }
 
-{
-  /* <iframe
-  className="pr-video p-con-shade"
-  // id="d71bda38-3ae5-40aa-8c24-93179412e432"
-  src="https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432"
-  width="100%"
-  height="100%"
-  // frameborder="0"
-  // scrolling="no"
-  // allow="autoplay;encrypted-media"
-  allowFullScreen
-  // webkitallowfullscreen
-  // mozallowfullscreen
-  // oallowfullscreen
-  // msallowfullscreen
-  // style="position:absolute;top:0;left:0;"
-></iframe>; */
-}
+// src="https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432"
+
+//   <script
+//   id="4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85-vod-d71bda38-3ae5-40aa-8c24-93179412e432"
+//   width="100%"
+//   height="100%"
+//   src="https://player.dacast.com/js/player.js?contentId=4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85-vod-d71bda38-3ae5-40aa-8c24-93179412e432"
+//   class="dacast-video"
+// ></script>;
+
+// https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432

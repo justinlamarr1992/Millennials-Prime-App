@@ -16,11 +16,14 @@ import Card from "../shared/Card";
 import ReviewForm from "./ReviewForm";
 import PostComponent from "../shared/PostComponent";
 import Ad from "../shared/Ad";
+import PrimePost from "../shared/PrimePost";
 
 import { globalStyles } from "../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Home({ navigation }) {
+  const [prime, setPrime] = useState(true);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
     { title: "Title 1", rating: 5, body: "Body 1111111", key: "1" },
@@ -35,6 +38,8 @@ export default function Home({ navigation }) {
       key: "1",
     },
   ]);
+  const name = "Test Name";
+  const time = "5 mins ago";
 
   // HOW TO ADD FUTURE POST IN TO SOCIAL
   const addReview = (review) => {
@@ -46,10 +51,10 @@ export default function Home({ navigation }) {
     setModalOpen(false);
   };
 
-  // const pressHandler = () => {
-  //   navigation.navigate("ReviewDetails");
-  //   // navigation.push("ReviewDetails");
-  // };
+  const pressHandler = () => {
+    navigation.navigate("TestComps");
+    // navigation.push("ReviewDetails");
+  };
 
   return (
     <View style={globalStyles.container}>
@@ -78,11 +83,19 @@ export default function Home({ navigation }) {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={globalStyles.postContainer}>
-          <PostComponent
+          {/* <PostComponent
             title={post[0].title}
             description={post[0].description}
+          /> */}
+          <PrimePost
+            prime={prime}
+            title={post[0].title}
+            description={post[0].description}
+            name={name}
+            time={time}
           />
           <Ad />
+          <Button title="Test Components" onPress={pressHandler} />
         </View>
       </ScrollView>
     </View>

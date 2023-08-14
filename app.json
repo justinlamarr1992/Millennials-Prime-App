@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Millennials-Prime",
-    "slug": "Millennials-Prime",
+    "slug": "millennials-prime",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a5976b9e-38a0-4b2e-9e71-a89f9e44f972"
+      }
+    },
+    "owner": "justappin"
   }
 }

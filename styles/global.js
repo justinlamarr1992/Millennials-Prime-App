@@ -94,13 +94,8 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-  postContainer: {
-    flex: 1,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.9,
-    shadowRadius: 3,
-  },
+
+  // Post Styling
   post: {
     borderRadius: 20,
     elevation: 5,
@@ -115,21 +110,15 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
   },
+  postContainer: {
+    flex: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.9,
+    shadowRadius: 3,
+  },
   postContent: {
     marginVertical: 5,
-  },
-  primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
-  postVideo: {
-    width: "auto",
-    height: 188,
-    borderRadius: 10,
-    // height: "50%",
-    // width: 100,
-  },
-  postTitle: {
-    color: "#ffffff",
-    fontWeight: "bold",
-    fontSize: 18,
   },
   postDescription: {
     color: "#8F92A1",
@@ -138,6 +127,58 @@ export const globalStyles = StyleSheet.create({
   postLikes: {
     marginBottom: 20,
   },
+
+  primePostTitle: {
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  postTitle: {
+    color: "#ffffff",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+
+  // User Info
+  postUserInfo: {
+    flexDirection: "row",
+  },
+  postUserInfoImage: {
+    width: "100%",
+    height: "100%",
+  },
+  primePostUserInfoName: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#000000",
+  },
+  postUserInfoName: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#ffffff",
+  },
+  postUserInfoPicContainer: {
+    flex: 0.25,
+    aspectRatio: 1,
+    paddingRight: 5,
+  },
+  postUserInfoTextContainer: {
+    justifyContent: "space-around",
+  },
+  postUserInfoTime: {
+    color: "#8F92A1",
+  },
+
+  postVideo: {
+    width: "auto",
+    height: 188,
+    borderRadius: 10,
+    // height: "50%",
+    // width: 100,
+  },
+
+  primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
+
   adPost: {
     borderRadius: 20,
     elevation: 5,
