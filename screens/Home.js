@@ -56,6 +56,20 @@ export default function Home({ navigation }) {
     // navigation.push("ReviewDetails");
   };
 
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      AccessKey: "f6dda3a8-9d9f-4be8-834a-7210ecc3e1bd",
+    },
+  };
+
+  fetch("https://api.bunny.net/videolibrary/147838", options)
+    .then((response) => response.json())
+    // .then((response) => console.log(JSON.stringify(response, null, 3)))
+    .then((response) => console.log(response.libraryId))
+    .catch((err) => console.error(err));
+
   return (
     <View style={globalStyles.container}>
       {/* <Modal visible={modalOpen} animationType="slide">
