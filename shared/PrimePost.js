@@ -24,12 +24,12 @@ export default function PrimePost({ prime, title, description, name, time }) {
           // source={{
           //   uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
           // }}
-          source={{
-            uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
-          }}
           // source={{
-          //   uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+          //   uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
           // }}
+          source={{
+            uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+          }}
           // source={{ uri: "https://www.youtube.com/embed/cqyziA30whE" }}
           style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
         />
