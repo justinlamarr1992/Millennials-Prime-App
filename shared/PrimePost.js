@@ -24,8 +24,17 @@ export default function PrimePost({ prime, title, description, name, time }) {
           source={{
             uri: "https://video.bunnycdn.com/play/147838/38cfaf07-c691-466b-9f6f-5c342f4a19af",
           }}
+          width="100%"
+          height="auto"
+          style={{
+            border: "none",
+            maxWidth: 1280,
+            maxHeight: 720,
+            ...globalStyles.postVideo,
+            ...globalStyles.postContent,
+          }}
           // source={{ uri: "https://www.youtube.com/embed/cqyziA30whE" }}
-          style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
+          // style={{ ...globalStyles.postVideo, ...globalStyles.postContent }}
         />
 
         <Text
