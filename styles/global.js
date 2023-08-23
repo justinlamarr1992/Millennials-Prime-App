@@ -171,7 +171,7 @@ export const globalStyles = StyleSheet.create({
 
   postVideo: {
     width: "auto",
-    height: 188,
+    height: 205,
     borderRadius: 10,
     // height: "50%",
     // width: 100,
