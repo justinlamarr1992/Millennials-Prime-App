@@ -1,27 +1,30 @@
 {
   "expo": {
-    "name": "Millennials-Prime",
+    "name": "Millennials Prime",
     "slug": "millennials-prime",
+    "description": "This is the App that will spread Love and bring this world back to the way its suppose to be.",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/mill-prime-icon.png",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#BD2932"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.justappin.millennialsprime"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.justappin.millennialsprime"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +34,15 @@
         "projectId": "a5976b9e-38a0-4b2e-9e71-a89f9e44f972"
       }
     },
-    "owner": "justappin"
+    "owner": "justappin",
+    "plugins": [
+      "expo-font"
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a5976b9e-38a0-4b2e-9e71-a89f9e44f972"
+    }
   }
 }

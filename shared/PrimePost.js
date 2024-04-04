@@ -22,8 +22,7 @@ export default function PrimePost({ prime, title, description, name, time }) {
       >
         <WebView
           source={{
-            uri: "https://video.bunnycdn.com/embed/147838/38cfaf07-c691-466b-9f6f-5c342f4a19af",
-            // uri: "https://iframe.mediadelivery.net/embed/147838/ba05e3a0-aedb-479f-88a4-7a2e30481efd",
+            uri: "https://video.bunnycdn.com/embed/147838/ec4cbe34-8750-4695-b252-69f53e51627a",
           }}
           width="100%"
           height="auto"
@@ -43,7 +42,7 @@ export default function PrimePost({ prime, title, description, name, time }) {
               : { ...globalStyles.postTitle, ...globalStyles.postContent }
           }
         >
-          {title}
+          {title ? title : "Loading"}
         </Text>
         <Text
           style={{
@@ -51,7 +50,7 @@ export default function PrimePost({ prime, title, description, name, time }) {
             ...globalStyles.postContent,
           }}
         >
-          {description}
+          {description ? description : "Loading"}
         </Text>
         <UserInfo prime={prime} name={name} time={time} />
       </LinearGradient>

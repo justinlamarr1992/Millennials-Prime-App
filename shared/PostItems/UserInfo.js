@@ -6,7 +6,7 @@ import { globalStyles } from "../../styles/global";
 import pic from "../../assets/images/MillennialsPrimeLogoNB.png";
 
 export default function UserInfo({ prime, name, time }) {
-  console.log(prime, name, time);
+  // console.log(prime, name, time);
   return (
     <View style={globalStyles.postUserInfo}>
       <View style={globalStyles.postUserInfoPicContainer}>
@@ -21,9 +21,11 @@ export default function UserInfo({ prime, name, time }) {
               : globalStyles.postUserInfoName
           }
         >
-          {name}
+          {name ? name : "Loading"}
         </Text>
-        <Text style={globalStyles.postUserInfoTime}>{time}</Text>
+        <Text style={globalStyles.postUserInfoTime}>
+          {time ? time : "Loading"}
+        </Text>
       </View>
     </View>
   );
