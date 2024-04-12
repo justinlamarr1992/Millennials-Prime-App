@@ -2,21 +2,67 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  // SignIn View
+  signInScreen: {
+    backgroundColor: "black",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  authButtonBox: {
+    width: "100%",
+    height: "30%",
+  },
+  signInForm: {
+    width: "100%",
+    height: "70%",
+    borderRadius: 10,
+
+    paddingTop: 50,
+    backgroundColor: "#ffffff",
+  },
+  authModal: { backgroundColor: "#ffffff" },
+
+  formTitle: {
+    // paddingTop: 30,
+    // displayz: flex,
+    // flexDirection: column,
+  },
+  labelInput: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+
+  padding: {
+    padding: 20,
+  },
+  // Container Sizes
   container: {
     flex: 1,
     padding: 20,
     paddingTop: 50,
     backgroundColor: "#f7f7f7",
   },
+
+  // Text Types
   titleText: {
     fontFamily: "inter-bold",
     fontSize: 18,
     color: "#020101",
   },
+  labelText: {
+    // fontFamily: "inter-bold",
+    fontSize: 13,
+    color: "#8F92A1",
+    paddingTop: 3,
+    paddingBottom: 3,
+  },
   paragraph: {
     marginVertical: 8,
     lineHeight: 20,
   },
+
+  // Header
   testHeader: {
     backgroundColor: "#020101",
   },
@@ -53,6 +99,8 @@ export const globalStyles = StyleSheet.create({
     height: 50,
     marginVertical: 5,
   },
+
+  // Modal
   modalContent: { flex: 1, padding: 20, paddingTop: 40 },
   modalToggle: {
     marginBottom: 10,
@@ -73,6 +121,7 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     borderRadius: 6,
+    color: "#8F92A1",
   },
   errorText: {
     color: "crimson",
@@ -90,7 +139,6 @@ export const globalStyles = StyleSheet.create({
   buttonText: {
     color: "#ffffff",
     fontWeight: "bold",
-    textTransform: "uppercase",
     fontSize: 16,
     textAlign: "center",
   },
@@ -221,76 +269,76 @@ export const images = {
   },
 };
 
-// const COLORS = {
-//    Background
-//   background: "#F7F7F7",
-//   background2: "#C4C4C4",
+const COLORS = {
+  //  Background
+  background: "#F7F7F7",
+  background2: "#C4C4C4",
 
-//    Form Color
-//   formC: "#ffffff",
+  //  Form Color
+  formC: "#ffffff",
 
-//    Text Colors
-//   priT: "#020101",
-//   secT: "#ffffff",
-//   triT: "#8F92A1",
+  //  Text Colors
+  priT: "#020101",
+  secT: "#ffffff",
+  triT: "#8F92A1",
 
-//    Colors
-//   priC: "#611821",
-//   secC: "#8e202b",
-//   triC: "#BD2932",
-//   quaC: "#fffd9b",
-//   quiC: "#ddcd76",
-//   hexC: "#b9a054",
+  //  Colors
+  priC: "#611821",
+  secC: "#8e202b",
+  triC: "#BD2932",
+  quaC: "#fffd9b",
+  quiC: "#ddcd76",
+  hexC: "#b9a054",
 
-//   NavBar Colors
-//   navbC: "#BD2932",
-//   footC: "#939597",
+  // NavBar Colors
+  navbC: "#BD2932",
+  footC: "#939597",
 
-//   transpWhite: "rgba(255, 255, 255, 0.9)",
+  transpWhite: "rgba(255, 255, 255, 0.9)",
 
-//   outline: "#8F92A1",
-// };
+  outline: "#8F92A1",
+};
 
-// const FONT = {
-//   regular: "Inter",
-//   medium: "DMMedium",
-//   bold: "DMBold",
-// };
+const FONT = {
+  regular: "Inter",
+  medium: "DMMedium",
+  bold: "DMBold",
+};
 
 // const FONTFAMILY = {
-//    --font: "Inter", sans-serif;
+//    font: "Inter", sans-serif;
 // };
 
-// const SIZES = {
-//   xSmall: 10,
-//   small: 12,
-//   medium: 16,
-//   large: 20,
-//   xLarge: 24,
-//   xxLarge: 32,
-// };
+const SIZES = {
+  xSmall: 10,
+  small: 12,
+  medium: 16,
+  large: 20,
+  xLarge: 24,
+  xxLarge: 32,
+};
 
-// const SHADOWS = {
-//   small: {
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 2,
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 3.84,
-//     elevation: 2,
-//   },
-//   medium: {
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 2,
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 5.84,
-//     elevation: 5,
-//   },
-// };
+const SHADOWS = {
+  small: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2,
+  },
+  medium: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 5.84,
+    elevation: 5,
+  },
+};
 
-// export { COLORS, FONT, SIZES, SHADOWS };
+export { COLORS, FONT, SIZES, SHADOWS };

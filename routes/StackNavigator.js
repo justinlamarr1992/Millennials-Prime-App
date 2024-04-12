@@ -8,6 +8,7 @@ import TestComps from "../screens/TestComps";
 import Header from "../shared/Header";
 
 import { globalStyles } from "../styles/global";
+import SignIn from "../screens/auth/SignIn";
 
 export default function StackNavigator() {
   const Stack = createNativeStackNavigator();
@@ -61,6 +62,19 @@ export default function StackNavigator() {
         component={TestComps}
         options={{
           title: "It Should Work",
+          headerStyle: {
+            backgroundColor: "#8e202b",
+          },
+          headerTintColor: "#ffffff",
+          // headerBackground:,
+          hideWhenScrolling: true,
+        }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{
+          title: "I Hope this is it",
           headerStyle: {
             backgroundColor: "#8e202b",
           },

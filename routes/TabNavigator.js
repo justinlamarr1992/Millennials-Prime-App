@@ -5,6 +5,7 @@ import About from "../screens/About";
 
 import { Image } from "react-native";
 import Logo from "../assets/images/MillennialsPrimeLogoNB.png";
+import SignIn from "../screens/auth/SignIn";
 
 export default function TabNavigator() {
   const Tab = createBottomTabNavigator();
@@ -36,10 +37,10 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="About"
-        component={About}
+        name="Sign In"
+        component={SignIn}
         options={{
-          title: "It Should Work",
+          title: "Log In",
           headerStyle: {
             backgroundColor: "#8e202b",
           },
