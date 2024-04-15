@@ -7,20 +7,30 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "black",
     flex: 1,
     alignItems: "center",
+  },
+  datePicker: { textColor: "orange", borderColor: "orange" },
+  centerItem: {
+    flex: 1,
+    flexDirection: "column",
+    // alignItems: "center",
     justifyContent: "center",
   },
-  authButtonBox: {
+  registerButtonBox: {
     width: "100%",
     height: "30%",
   },
-  signInForm: {
+  loginButtonBox: {
     width: "100%",
-    height: "70%",
+    height: "15%",
+  },
+  loginForm: { width: "100%", height: "70%" },
+  registerForm: { width: "100%", height: "85%" },
+  signInForm: {
     borderRadius: 10,
-
     paddingTop: 50,
     backgroundColor: "#ffffff",
   },
+
   authModal: { backgroundColor: "#ffffff" },
 
   formTitle: {
@@ -142,7 +152,17 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-
+  cancelButton: {
+    paddingHorizontal: 20,
+    backgroundColor: "#11182711",
+  },
+  cancelButtonText: {
+    color: "#075985",
+  },
+  confirmButton: {
+    paddingHorizontal: 20,
+    backgroundColor: "#BD2932",
+  },
   // Post Styling
   post: {
     borderRadius: 20,

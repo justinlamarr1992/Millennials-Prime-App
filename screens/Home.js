@@ -162,17 +162,17 @@ export default function Home({ navigation }) {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={globalStyles.postContainer}>
-          {/* <PrimePost
+          <PrimePost
             prime={prime}
             title={post.title}
             description={post.description}
             name={name}
             time={time}
-          /> */}
-          {/* <Ad /> */}
+          />
+          <Ad />
           {/* TEst Back End Button Here */}
           {/* <Button title="Test Back End" onPress={pressBackEndTest} /> */}
-          <Button title="Test Components" onPress={pressHandler} />
+          {/* <Button title="Test Components" onPress={pressHandler} /> */}
 
           {/* <Text>{error ? error : "We Working BABY"}</Text> */}
         </View>

@@ -27,12 +27,27 @@ export default function SignIn({ navigation }) {
 
   return (
     <View style={[globalStyles.signInScreen]}>
-      <View style={[globalStyles.authButtonBox, globalStyles.padding]}>
-        <Pressable style={globalStyles.button}>
+      <View
+        style={[
+          globalStyles.registerButtonBox,
+          globalStyles.padding,
+          globalStyles.centerItem,
+        ]}
+      >
+        <Pressable
+          style={globalStyles.button}
+          onPress={() => navigation.jumpTo("Register")}
+        >
           <Text style={globalStyles.buttonText}>Create an Account</Text>
         </Pressable>
       </View>
-      <View style={[globalStyles.signInForm, globalStyles.padding]}>
+      <View
+        style={[
+          globalStyles.signInForm,
+          globalStyles.padding,
+          globalStyles.loginForm,
+        ]}
+      >
         <View style={globalStyles.formTitle}>
           <Text style={globalStyles.titleText}>Welcome Back</Text>
           <Text style={globalStyles.labelText}>Sign in to Continue</Text>
