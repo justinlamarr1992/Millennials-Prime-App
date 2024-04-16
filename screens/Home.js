@@ -12,6 +12,7 @@ import {
   Modal,
   ScrollView,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import Card from "../shared/Card";
 import ReviewForm from "./ReviewForm";
 import PostComponent from "../shared/PostComponent";
@@ -24,6 +25,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 
 export default function Home({ navigation }) {
+  const colors = useTheme().colors;
   const [prime, setPrime] = useState(true);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -136,7 +138,8 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <View style={globalStyles.container}>
+    <View style={{ color: colors.background }}>
+      {/* <View style={globalStyles.container}> */}
       {/* <Modal visible={modalOpen} animationType="slide">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={globalStyles.modalContent}>
@@ -162,14 +165,15 @@ export default function Home({ navigation }) {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={globalStyles.postContainer}>
-          <PrimePost
+          {/* <PrimePost
             prime={prime}
             title={post.title}
             description={post.description}
             name={name}
             time={time}
           />
-          <Ad />
+          <Ad /> */}
+          <Text style={{ color: colors.text }}>Demo Colors</Text>
           {/* TEst Back End Button Here */}
           {/* <Button title="Test Back End" onPress={pressBackEndTest} /> */}
           {/* <Button title="Test Components" onPress={pressHandler} /> */}

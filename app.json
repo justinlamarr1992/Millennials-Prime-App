@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Millennials Prime",
-    "slug": "millennials-prime",
+    "slug": "millennials-prime-i5oqIK_4gVFQyr8oHl8rh",
     "description": "This is the App that will spread Love and bring this world back to the way its suppose to be.",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,21 +17,21 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.justappin.millennialsprime"
+      "bundleIdentifier": "com.justappin.millennials_prime"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.justappin.millennialsprime"
+      "package": "com.justappin.millennials_prime"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "a5976b9e-38a0-4b2e-9e71-a89f9e44f972"
+        "projectId": "ffe1c2c1-40c0-43c2-b158-8f4107c94a64"
       }
     },
     "owner": "justappin",

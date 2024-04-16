@@ -2,6 +2,10 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
+
   // SignIn View
   signInScreen: {
     backgroundColor: "black",

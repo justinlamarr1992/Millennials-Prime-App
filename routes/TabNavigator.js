@@ -7,6 +7,7 @@ import { Image } from "react-native";
 import Logo from "../assets/images/MillennialsPrimeLogoNB.png";
 import SignIn from "../screens/auth/SignIn";
 import Register from "../screens/auth/Register";
+import Settings from "../screens/settings/Settings";
 
 export default function TabNavigator() {
   const Tab = createBottomTabNavigator();
@@ -42,6 +43,17 @@ export default function TabNavigator() {
         component={SignIn}
         options={{
           title: "Log In",
+          headerStyle: {
+            backgroundColor: "#8e202b",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: "Settings",
           headerStyle: {
             backgroundColor: "#8e202b",
           },
