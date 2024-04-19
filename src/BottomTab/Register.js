@@ -16,6 +16,7 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { globalStyles } from "../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -29,7 +30,10 @@ const USER_REGEX = /^[a-z0-9.]{1,64}@[a-z0-9.]{1,64}$/i;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-export default function Register({ navigation }) {
+export default function Register() {
+  const navigation = useNavigation();
+  const colors = useTheme().colors;
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const [user, setUser] = useState("");
@@ -142,7 +146,7 @@ export default function Register({ navigation }) {
           ]}
         >
           <Pressable
-            style={globalStyles.button}
+            style={[globalStyles.button, { backgroundColor: colors.hexC }]}
             onPress={() => navigation.jumpTo("Sign In")}
           >
             <Text style={globalStyles.buttonText}>Login</Text>
@@ -153,11 +157,18 @@ export default function Register({ navigation }) {
             globalStyles.signInForm,
             globalStyles.padding,
             globalStyles.registerForm,
+            globalStyles.bottomPadding,
+            {
+              backgroundColor: colors.background,
+              borderColor: colors.borderColor,
+            },
           ]}
         >
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={globalStyles.formTitle}>
-              <Text style={globalStyles.titleText}>Create an Account</Text>
+              <Text style={[globalStyles.titleText, { color: colors.text }]}>
+                Create an Account
+              </Text>
               <Text style={globalStyles.labelText}>Sign Up to Continue</Text>
             </View>
             <View style={globalStyles.labelInput}>
@@ -288,12 +299,17 @@ export default function Register({ navigation }) {
                 </Pressable>
               )}
             </View>
-            <Pressable style={globalStyles.button}>
+            <Pressable
+              style={[
+                globalStyles.button,
+                globalStyles.vertMargin,
+                { backgroundColor: colors.triC },
+              ]}
+            >
               <Text style={globalStyles.buttonText} onPress={handleSubmit}>
                 Create an Account
               </Text>
             </Pressable>
-            <Text>Forgot Passord Link</Text>
             {/* <Text>Connect with Socials</Text> */}
           </ScrollView>
         </View>

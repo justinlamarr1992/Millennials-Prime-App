@@ -8,11 +8,11 @@ export const globalStyles = StyleSheet.create({
 
   // SignIn View
   signInScreen: {
-    backgroundColor: "black",
+    backgroundColor: "#000000",
     flex: 1,
     alignItems: "center",
   },
-  datePicker: { textColor: "orange", borderColor: "orange" },
+  datePicker: {},
   centerItem: {
     flex: 1,
     flexDirection: "column",
@@ -32,7 +32,8 @@ export const globalStyles = StyleSheet.create({
   signInForm: {
     borderRadius: 10,
     paddingTop: 50,
-    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    // borderRadius: 2,
   },
 
   authModal: { backgroundColor: "#ffffff" },
@@ -49,6 +50,22 @@ export const globalStyles = StyleSheet.create({
 
   padding: {
     padding: 20,
+  },
+  bottomPadding: { paddingBottom: 80 },
+  groupPadding: {
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  vertPadding: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  vertMargin: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  marginB100: {
+    marginBottom: 100,
   },
   // Container Sizes
   container: {
@@ -137,6 +154,13 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 6,
     color: "#8F92A1",
   },
+  settingsInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+    fontSize: 18,
+    borderRadius: 6,
+  },
   errorText: {
     color: "crimson",
     fontWeight: "bold",
@@ -148,7 +172,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    backgroundColor: "#611821",
+    // backgroundColor: "#611821",
   },
   buttonText: {
     color: "#ffffff",
@@ -292,77 +316,3 @@ export const images = {
     5: require("../assets/images/Tutorial/rating-5.png"),
   },
 };
-
-const COLORS = {
-  //  Background
-  background: "#F7F7F7",
-  background2: "#C4C4C4",
-
-  //  Form Color
-  formC: "#ffffff",
-
-  //  Text Colors
-  priT: "#020101",
-  secT: "#ffffff",
-  triT: "#8F92A1",
-
-  //  Colors
-  priC: "#611821",
-  secC: "#8e202b",
-  triC: "#BD2932",
-  quaC: "#fffd9b",
-  quiC: "#ddcd76",
-  hexC: "#b9a054",
-
-  // NavBar Colors
-  navbC: "#BD2932",
-  footC: "#939597",
-
-  transpWhite: "rgba(255, 255, 255, 0.9)",
-
-  outline: "#8F92A1",
-};
-
-const FONT = {
-  regular: "Inter",
-  medium: "DMMedium",
-  bold: "DMBold",
-};
-
-// const FONTFAMILY = {
-//    font: "Inter", sans-serif;
-// };
-
-const SIZES = {
-  xSmall: 10,
-  small: 12,
-  medium: 16,
-  large: 20,
-  xLarge: 24,
-  xxLarge: 32,
-};
-
-const SHADOWS = {
-  small: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 2,
-  },
-  medium: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 5.84,
-    elevation: 5,
-  },
-};
-
-export { COLORS, FONT, SIZES, SHADOWS };

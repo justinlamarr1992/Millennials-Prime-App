@@ -13,18 +13,18 @@ import {
   ScrollView,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import Card from "../shared/Card";
-import ReviewForm from "./ReviewForm";
-import PostComponent from "../shared/PostComponent";
-import Ad from "../shared/Ad";
-import PrimePost from "../shared/PrimePost";
+import { useNavigation } from "@react-navigation/native";
 
-import { globalStyles } from "../styles/global";
+import Ad from "../../shared/Ad";
+import PrimePost from "../../shared/PrimePost";
+
+import { globalStyles } from "../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import axios from "axios";
 
-export default function Home({ navigation }) {
+export default function Home() {
+  const navigation = useNavigation();
   const colors = useTheme().colors;
   const [prime, setPrime] = useState(true);
 
@@ -173,7 +173,31 @@ export default function Home({ navigation }) {
             time={time}
           />
           <Ad /> */}
-          <Text style={{ color: colors.text }}>Demo Colors</Text>
+          <Text style={{ color: colors.priT }}>Demo Colors</Text>
+          <Text
+            style={{ color: colors.priT }}
+            onPress={() => navigation.navigate("About")}
+          >
+            About
+          </Text>
+          <Text
+            style={{ color: colors.priT }}
+            onPress={() => navigation.navigate("My Info")}
+          >
+            My Info
+          </Text>
+          <Text
+            style={{ color: colors.priT }}
+            onPress={() => navigation.navigate("Business")}
+          >
+            Business
+          </Text>
+          <Text
+            style={{ color: colors.priT }}
+            onPress={() => navigation.navigate("Art")}
+          >
+            Art
+          </Text>
           {/* TEst Back End Button Here */}
           {/* <Button title="Test Back End" onPress={pressBackEndTest} /> */}
           {/* <Button title="Test Components" onPress={pressHandler} /> */}

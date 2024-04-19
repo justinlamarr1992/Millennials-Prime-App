@@ -16,6 +16,7 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { WebView } from "react-native-webview";
 import { globalStyles } from "../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -23,10 +24,12 @@ import { LinearGradient } from "expo-linear-gradient";
 // import UserInfo from "./PostItems/UserInfo";
 
 import axios from "axios";
+// import colors from "../../styles/colors";
 
-export default function SignIn({ navigation }) {
+export default function SignIn() {
+  const navigation = useNavigation();
   const [modalOpen, setModalOpen] = useState(false);
-
+  const colors = useTheme().colors;
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -42,7 +45,7 @@ export default function SignIn({ navigation }) {
           ]}
         >
           <Pressable
-            style={globalStyles.button}
+            style={[globalStyles.button, { backgroundColor: colors.hexC }]}
             onPress={() => navigation.jumpTo("Register")}
           >
             <Text style={globalStyles.buttonText}>Create an Account</Text>
@@ -53,10 +56,16 @@ export default function SignIn({ navigation }) {
             globalStyles.signInForm,
             globalStyles.padding,
             globalStyles.loginForm,
+            {
+              backgroundColor: colors.background,
+              borderColor: colors.borderColor,
+            },
           ]}
         >
           <View style={globalStyles.formTitle}>
-            <Text style={globalStyles.titleText}>Welcome Back</Text>
+            <Text style={[globalStyles.titleText, { color: colors.text }]}>
+              Welcome Back
+            </Text>
             <Text style={globalStyles.labelText}>Sign in to Continue</Text>
           </View>
           <View style={globalStyles.labelInput}>
@@ -74,13 +83,19 @@ export default function SignIn({ navigation }) {
               secureTextEntry={true}
             ></TextInput>
           </View>
-          <View></View>
-          <View></View>
 
-          <Pressable style={globalStyles.button}>
+          <Pressable
+            style={[
+              globalStyles.button,
+              globalStyles.vertMargin,
+              { backgroundColor: colors.triC },
+            ]}
+          >
             <Text style={globalStyles.buttonText}>Login</Text>
           </Pressable>
-          <Text>Forgot Passord Link</Text>
+          <Text style={[globalStyles.vertPadding, { color: colors.linkC }]}>
+            Forgot Passord Link
+          </Text>
           {/* <Text>Connect with Socials</Text> */}
         </View>
       </View>
