@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../context/AuthContext";
 
 import Ad from "../../shared/Ad";
 import PrimePost from "../../shared/PrimePost";
@@ -22,8 +23,11 @@ import { globalStyles } from "../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import axios from "axios";
+import UserInfo from "../../shared/PostItems/UserInfo";
 
 export default function Home() {
+  const { logout, test, auth } = useContext(AuthContext);
+
   const navigation = useNavigation();
   const colors = useTheme().colors;
   const [prime, setPrime] = useState(true);
@@ -164,16 +168,18 @@ export default function Home() {
       /> */}
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={globalStyles.postContainer}>
+        <View style={[globalStyles.padding]}>
           {/* <PrimePost
             prime={prime}
             title={post.title}
             description={post.description}
             name={name}
             time={time}
-          />
-          <Ad /> */}
-          <Text style={{ color: colors.priT }}>Demo Colors</Text>
+          /> */}
+          <Ad />
+          <Text style={{ color: colors.priT }} onPress={logout}>
+            Log Out
+          </Text>
           <Text
             style={{ color: colors.priT }}
             onPress={() => navigation.navigate("About")}
@@ -198,6 +204,14 @@ export default function Home() {
           >
             Art
           </Text>
+
+          <Text style={{ color: colors.priT }}>
+            Test From AuthContext: {test}
+          </Text>
+          <Text style={{ color: colors.priT }}>
+            Auth From AuthContext: {auth}
+          </Text>
+
           {/* TEst Back End Button Here */}
           {/* <Button title="Test Back End" onPress={pressBackEndTest} /> */}
           {/* <Button title="Test Components" onPress={pressHandler} /> */}

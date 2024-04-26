@@ -20,6 +20,11 @@ const light = {
     quiC: "#ddcd76",
     hexC: "#b9a054",
     linkC: "#8e202b",
+    primCar: "#fffd9b",
+    primeCarT: "#020101",
+    showCar: "#611821",
+    showCarT: "#ffffff",
+
     ...commonColor.colors,
   },
 };
@@ -41,6 +46,10 @@ const dark = {
     quiC: "#ddcd76",
     hexC: "#b9a054",
     linkC: "#ddcd76",
+    primCar: "#BD2932",
+    primeCarT: "#020101",
+    showCar: "#b9a054",
+    showCarT: "#ffffff",
     ...commonColor.colors,
   },
 };

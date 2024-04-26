@@ -18,7 +18,7 @@ import {
 } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { globalStyles } from "../../styles/global";
+import { globalStyles } from "../../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 // import UserInfo from "./PostItems/UserInfo";
@@ -94,11 +94,8 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/register",
-        // "https://us-central1-millennialsprime.cloudfunctions.net/api/register",
-
+        "https://us-central1-millennialsprime.cloudfunctions.net/api/register",
         dataToSubmit,
-
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -128,6 +125,9 @@ export default function Register() {
         setErrMsg("Login Failed");
       }
       //   errRef.current.focus();
+    } finally {
+      // TODO: Check if good infor then go to settings page if not need errors to kick in
+      navigation.navigate("Sign In");
     }
   };
 
@@ -147,7 +147,7 @@ export default function Register() {
         >
           <Pressable
             style={[globalStyles.button, { backgroundColor: colors.hexC }]}
-            onPress={() => navigation.jumpTo("Sign In")}
+            onPress={() => navigation.navigate("Sign In")}
           >
             <Text style={globalStyles.buttonText}>Login</Text>
           </Pressable>

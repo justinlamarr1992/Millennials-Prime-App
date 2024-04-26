@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { globalStyles } from "../../styles/global";
+import { globalStyles } from "../../../styles/global";
 
-export default function PasswordRecovery() {
+export default function About() {
   return (
     <View style={globalStyles.container}>
-      <Text>Password Recovery</Text>
+      <Text>About</Text>
     </View>
   );
 }

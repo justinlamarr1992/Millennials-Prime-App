@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,25 +16,40 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
+import { AuthContext } from "../../context/AuthContext";
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation, useTheme } from "@react-navigation/native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { globalStyles } from "../../styles/global";
+import { globalStyles } from "../../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 // import UserInfo from "./PostItems/UserInfo";
 
 import axios from "axios";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 export default function MyInfo() {
+  const axiosPrivate = useAxiosPrivate();
+  const { accessToken, roles, id, logout, userInfo } = useContext(AuthContext);
+  let _id = id;
+
   const navigation = useNavigation();
   const colors = useTheme().colors;
+
+  // Use States
+  const [errMsg, setErrMsg] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
-
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [DOB, setDOB] = useState(null);
+  const [country, setCountry] = useState(null);
+  const [state, setState] = useState(null);
+  const [city, setCity] = useState(null);
+  const [zip, setZip] = useState(null);
   const [canLike, setCanLike] = useState(null);
   const [canDislike, setCanDislike] = useState(null);
   const [canComment, setCanComment] = useState(null);
@@ -43,6 +58,9 @@ export default function MyInfo() {
   const [B2B, setB2B] = useState(null);
   const [eComm, setEComm] = useState(null);
   const [upload, setUpload] = useState(null);
+
+  // Pickers
+  const [showPicker, setShowPicker] = useState(false);
   const [canLikePicker, setCanLikePicker] = useState(false);
   const [canDislikePicker, setCanDislikePicker] = useState(false);
   const [canCommentPicker, setCanCommentPicker] = useState(false);
@@ -51,6 +69,56 @@ export default function MyInfo() {
   const [B2BPicker, setB2BPicker] = useState(false);
   const [eCommPicker, setECommPicker] = useState(false);
   const [uploadPicker, setUploadPicker] = useState(false);
+
+  let dataToSubmit = {
+    name,
+    username,
+    email,
+    DOB,
+    country,
+    state,
+    city,
+    zip,
+    canLike,
+    canDislike,
+    canComment,
+    canShare,
+    industry,
+    B2B,
+    eComm,
+    upload,
+  };
+
+  // Values to the back end
+  // const [values, setValues] = useState({
+  // name,
+  // username: null,
+  // email: null,
+  // DOB: null,
+  // country: null,
+  // state: null,
+  // city: null,
+  // zip: null,
+  // canLike: null,
+  // canDislike: null,
+  // canComment: null,
+  // canShare: null,
+  // industry: null,
+  // B2B: null,
+  // eComm: null,
+  // upload: null,
+  // TEst later
+  // profileSettings: {
+  //   canLike: null,
+  //   canDislike: null,
+  //   canComment: null,
+  //   canShare: null,
+  //   industry: null,
+  //   B2B: null,
+  //   eComm: null,
+  //   upload: null,
+  // },
+  // });
 
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
@@ -98,16 +166,46 @@ export default function MyInfo() {
     toggleDatePicker();
   };
 
+  const handleChange = (e) => {
+    // setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // console.log(values.name);
+    console.log(name);
+  };
+
   const handleSubmit = async (e) => {
     try {
       console.log("Started the try to submit MyInfo Stuff");
+      let dataToSubmit = {
+        name,
+        username,
+        email,
+        DOB,
+        country,
+        state,
+        city,
+        zip,
+        canLike,
+        canDislike,
+        canComment,
+        canShare,
+        industry,
+        B2B,
+        eComm,
+        upload,
+      };
+      const response = await axiosPrivate.patch(
+        `https://us-central1-millennialsprime.cloudfunctions.net/api/users/${_id}`,
+        { dataToSubmit }
+      );
+      console.log(response);
     } catch (err) {
       console.log("ERR", err);
-    } finally {
-      console.log("It worked!!!");
-      // navigation.jumpTo("Business");
-      navigation.navigate("Business");
     }
+    // finally {
+    // console.log("It worked!!!");
+    // navigation.jumpTo("Business");
+    // navigation.navigate("Business");
+    // }
     console.log("Handle Submit pressed");
   };
 
@@ -129,13 +227,19 @@ export default function MyInfo() {
             <Text style={globalStyles.labelText}>
               Edit your Profile information
             </Text>
+            <Text style={globalStyles.labelText}>{_id}</Text>
           </View>
           <View style={globalStyles.groupPadding}>
             <View style={globalStyles.labelInput}>
               <Text style={globalStyles.labelText}>Name</Text>
               <TextInput
                 style={globalStyles.settingsInput}
+                name="name"
+                id="name"
                 placeholder="Enter Name"
+                value={name}
+                onChangeText={(text) => setName(text)}
+                onChange={handleChange}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -143,6 +247,8 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter Username"
+                editable={false}
+                value={username}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -150,6 +256,8 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter Email"
+                editable={false}
+                value={username}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -157,7 +265,8 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter Birthday"
-                secureTextEntry={true}
+                editable={false}
+                value={DOB}
               ></TextInput>
             </View>
           </View>
@@ -167,6 +276,11 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter Country"
+                value={country}
+                name="country"
+                id="country"
+                onChangeText={(text) => setCountry(text)}
+                onChange={handleChange}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -174,6 +288,11 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter State"
+                value={state}
+                name="state"
+                id="state"
+                onChangeText={(text) => setState(text)}
+                onChange={handleChange}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -181,6 +300,11 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter City"
+                value={city}
+                name="city"
+                id="city"
+                onChangeText={(text) => setCity(text)}
+                onChange={handleChange}
               ></TextInput>
             </View>
             <View style={globalStyles.labelInput}>
@@ -188,6 +312,12 @@ export default function MyInfo() {
               <TextInput
                 style={globalStyles.settingsInput}
                 placeholder="Enter Zip"
+                keyboardType="number-pad"
+                value={zip}
+                name="zip"
+                id="zip"
+                onChangeText={(text) => setZip(text)}
+                onChange={handleChange}
               ></TextInput>
             </View>
           </View>
@@ -200,6 +330,7 @@ export default function MyInfo() {
                   placeholder="Can Users Like your Post?"
                   value={canLike}
                   onChangeText={setCanLike}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleCanLikePicker}
                 ></TextInput>
@@ -226,6 +357,7 @@ export default function MyInfo() {
                   placeholder="Can Users Dislike your Post"
                   value={canDislike}
                   onChangeText={setCanDislike}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleCanDislikePicker}
                 ></TextInput>
@@ -250,6 +382,7 @@ export default function MyInfo() {
                   placeholder="Can Users Comment on Your Post"
                   value={canComment}
                   onChangeText={setCanComment}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleCanCommentPicker}
                 ></TextInput>
@@ -274,6 +407,7 @@ export default function MyInfo() {
                   placeholder="Can Users Share your Post"
                   value={canShare}
                   onChangeText={setCanShare}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleCanSharePicker}
                 ></TextInput>
@@ -294,16 +428,13 @@ export default function MyInfo() {
           <View style={globalStyles.groupPadding}>
             <View style={globalStyles.labelInput}>
               <Text style={globalStyles.labelText}>Your Industry</Text>
-              {/* <TextInput
-                style={globalStyles.input}
-                placeholder="Enter Email"
-              ></TextInput> */}
               <Pressable>
                 <TextInput
                   style={globalStyles.input}
                   placeholder="What is the Industry you Operate in"
                   value={industry}
                   onChangeText={setIndustry}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleIndustryPicker}
                 ></TextInput>
@@ -364,6 +495,7 @@ export default function MyInfo() {
                   placeholder="Business to Business?"
                   value={B2B}
                   onChangeText={setB2B}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleB2BPicker}
                 ></TextInput>
@@ -386,6 +518,7 @@ export default function MyInfo() {
                   placeholder="Would you like to Sell Items"
                   value={eComm}
                   onChangeText={setEComm}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleECommPicker}
                 ></TextInput>
@@ -408,6 +541,7 @@ export default function MyInfo() {
                   placeholder="Do you have Cont to Upload"
                   value={upload}
                   onChangeText={setUpload}
+                  onChange={handleChange}
                   editable={false}
                   onPressIn={toggleUploadPicker}
                 ></TextInput>

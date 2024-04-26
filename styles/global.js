@@ -2,6 +2,19 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  showView: {
+    borderWidth: 1,
+    borderColor: "#b9a054",
+    // backgroundColor: "#fffd9b",
+    padding: 10,
+    borderRadius: 10,
+  },
+  showViewTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 1,
+  },
+  showViewDescription: {},
   flex1: {
     flex: 1,
   },
@@ -51,7 +64,9 @@ export const globalStyles = StyleSheet.create({
   padding: {
     padding: 20,
   },
-  bottomPadding: { paddingBottom: 80 },
+  bottomPadding: { paddingBottom: 40 },
+  bottomPadding20: { paddingBottom: 20 },
+  bottomPadding10: { paddingBottom: 10 },
   groupPadding: {
     paddingTop: 5,
     paddingBottom: 5,
