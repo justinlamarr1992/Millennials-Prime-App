@@ -26,7 +26,8 @@ import axios from "axios";
 import UserInfo from "../../shared/PostItems/UserInfo";
 
 export default function Home() {
-  const { logout, test, auth } = useContext(AuthContext);
+  const { logout, test, auth, id, accessToken, roles } =
+    useContext(AuthContext);
 
   const navigation = useNavigation();
   const colors = useTheme().colors;
@@ -177,22 +178,22 @@ export default function Home() {
             time={time}
           /> */}
           <Ad />
-          <Text style={{ color: colors.priT }} onPress={logout}>
+          {/* <Text style={{ color: colors.priT }} onPress={logout}>
             Log Out
-          </Text>
-          <Text
+          </Text> */}
+          {/* <Text
             style={{ color: colors.priT }}
             onPress={() => navigation.navigate("About")}
           >
             About
-          </Text>
+          </Text> */}
           <Text
             style={{ color: colors.priT }}
             onPress={() => navigation.navigate("My Info")}
           >
             My Info
           </Text>
-          <Text
+          {/* <Text
             style={{ color: colors.priT }}
             onPress={() => navigation.navigate("Business")}
           >
@@ -203,14 +204,28 @@ export default function Home() {
             onPress={() => navigation.navigate("Art")}
           >
             Art
-          </Text>
+          </Text> */}
 
-          <Text style={{ color: colors.priT }}>
-            Test From AuthContext: {test}
-          </Text>
-          <Text style={{ color: colors.priT }}>
-            Auth From AuthContext: {auth}
-          </Text>
+          {id ? (
+            <Text style={{ color: colors.quaC }}>ID is Good</Text>
+          ) : (
+            <Text style={{ color: colors.triC }}>No ID</Text>
+          )}
+          {roles ? (
+            <Text style={{ color: colors.quaC }}>Roles is Good</Text>
+          ) : (
+            <Text style={{ color: colors.triC }}>No Roles</Text>
+          )}
+          {accessToken ? (
+            <Text style={{ color: colors.quaC }}>AccessToken is Good</Text>
+          ) : (
+            <Text style={{ color: colors.triC }}>No AccessToken</Text>
+          )}
+          {auth ? (
+            <Text style={{ color: colors.quaC }}>Auth Information is Good</Text>
+          ) : (
+            <Text style={{ color: colors.triC }}>No Auth Information</Text>
+          )}
 
           {/* TEst Back End Button Here */}
           {/* <Button title="Test Back End" onPress={pressBackEndTest} /> */}

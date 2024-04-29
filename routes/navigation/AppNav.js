@@ -56,7 +56,6 @@ const AppNav = () => {
   return (
     <NavigationContainer theme={theme === "dark" ? colors.dark : colors.light}>
       {auth !== null ? <TabNavigator /> : <AuthStack />}
-      {/* {accessToken !== null ? <TabNavigator /> : <AuthStack />} */}
     </NavigationContainer>
   );
 };

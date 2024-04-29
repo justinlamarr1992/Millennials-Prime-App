@@ -25,6 +25,11 @@ export default function LogOut() {
   const navigation = useNavigation();
   const colors = useTheme().colors;
 
+  const handleLogOut = async () => {
+    try {
+    } catch (err) {}
+  };
+
   return (
     <View>
       <Text style={{ color: colors.priT }} onPress={logout}>

@@ -1,16 +1,14 @@
-import { AxiosPrivate, axiosPrivate } from "../API/axios";
-import { View, Text } from "react-native";
+import { axiosPrivate } from "../API/axios";
 import React, { useEffect, useContext } from "react";
 import useRefreshToken from "./useRefreshToken";
 import useAuth from "./useAuth";
-import { AuthContext } from "../context/AuthContext";
 
 const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
-
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useAuth();
 
   useEffect(() => {
+    console.log(`From the useAxiosPrivate file this is the AUTH: ${auth}`);
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         // console.log(config.headers);
@@ -41,6 +39,7 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
   }, [auth, refresh]);
+
   return axiosPrivate;
 };
 

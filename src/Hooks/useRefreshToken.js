@@ -4,11 +4,10 @@ import useAuth from "./useAuth";
 import { AuthContext } from "../context/AuthContext";
 
 const useRefreshToken = () => {
-  //   const { setAuth } = useAuth();
-  const { setAuth } = useContext(AuthContext);
-
+  const { auth } = useAuth();
+  // const { setAuth } = useContext(AuthContext);
+  console.log(`This is from the RefreshTokem File`);
   const refresh = async () => {
-    // console.log("Token +++>>>>>", JSON.stringify(auth, null, 2));
     const response = await axios.get("/refresh", {
       withCredentials: true,
     });

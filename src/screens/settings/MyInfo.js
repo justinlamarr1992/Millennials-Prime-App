@@ -26,13 +26,18 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 // import UserInfo from "./PostItems/UserInfo";
 
-import axios from "axios";
+import axios from "../../API/axios";
+// This is where the error starts
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+// import axios from "axios";
 
 export default function MyInfo() {
   const axiosPrivate = useAxiosPrivate();
-  const { accessToken, roles, id, logout, userInfo } = useContext(AuthContext);
+  const { auth, accessToken, roles, id, logout, userInfo } =
+    useContext(AuthContext);
   let _id = id;
+
+  console.log(`AuthContext ${accessToken}`);
 
   const navigation = useNavigation();
   const colors = useTheme().colors;
@@ -70,7 +75,7 @@ export default function MyInfo() {
   const [eCommPicker, setECommPicker] = useState(false);
   const [uploadPicker, setUploadPicker] = useState(false);
 
-  let dataToSubmit = {
+  let values = {
     name,
     username,
     email,
@@ -174,7 +179,7 @@ export default function MyInfo() {
 
   const handleSubmit = async (e) => {
     try {
-      console.log("Started the try to submit MyInfo Stuff");
+      console.log("Started the APP test");
       let dataToSubmit = {
         name,
         username,
@@ -193,10 +198,18 @@ export default function MyInfo() {
         eComm,
         upload,
       };
+      // console.log(`From useContext id: ${id}`);
+      // console.log(`Saved to useState _id: ${_id}`);
+      console.log("Starting the try to get in to back end ");
       const response = await axiosPrivate.patch(
         `https://us-central1-millennialsprime.cloudfunctions.net/api/users/${_id}`,
-        { dataToSubmit }
+        { values }
       );
+      // const response = await axios.patch(
+      //   `users/profilesettings/662a6321a0e8a4dd4be50586`,
+      //   { dataToSubmit }
+      // );
+
       console.log(response);
     } catch (err) {
       console.log("ERR", err);
@@ -208,6 +221,49 @@ export default function MyInfo() {
     // }
     console.log("Handle Submit pressed");
   };
+  // const handleSubmit = async (e) => {
+  //   try {
+  //     console.log("Started the try to submit MyInfo Stuff");
+  //     let dataToSubmit = {
+  //       name,
+  //       username,
+  //       email,
+  //       DOB,
+  //       country,
+  //       state,
+  //       city,
+  //       zip,
+  //       canLike,
+  //       canDislike,
+  //       canComment,
+  //       canShare,
+  //       industry,
+  //       B2B,
+  //       eComm,
+  //       upload,
+  //     };
+  //     const response = await axios.patch(
+  //       `https://us-central1-millennialsprime.cloudfunctions.net/api/users/${_id}`,
+  //       { dataToSubmit }
+  //     );
+  //     // This is what I want with axios private
+  //     // const response = await axiosPrivate.patch(
+  //     //   `https://us-central1-millennialsprime.cloudfunctions.net/api/users/${_id}`,
+  //     //   { dataToSubmit }
+  //     // );
+  //     // This is what I want with axios private
+
+  //     console.log(response);
+  //   } catch (err) {
+  //     console.log("ERR", err);
+  //   }
+  //   // finally {
+  //   // console.log("It worked!!!");
+  //   // navigation.jumpTo("Business");
+  //   // navigation.navigate("Business");
+  //   // }
+  //   console.log("Handle Submit pressed");
+  // };
 
   return (
     <KeyboardAvoidingView
@@ -227,7 +283,11 @@ export default function MyInfo() {
             <Text style={globalStyles.labelText}>
               Edit your Profile information
             </Text>
-            <Text style={globalStyles.labelText}>{_id}</Text>
+            {id ? (
+              <Text style={{ color: colors.quaC }}>ID is Good</Text>
+            ) : (
+              <Text style={{ color: colors.triC }}>No ID</Text>
+            )}
           </View>
           <View style={globalStyles.groupPadding}>
             <View style={globalStyles.labelInput}>

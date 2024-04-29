@@ -29,13 +29,15 @@ import useAuth from "../../Hooks/useAuth";
 
 export default function SignIn() {
   // const { auth, setAuth } = useAuth();
-  const { login, logout } = useContext(AuthContext);
+  const { login, logout, auth } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [password, setPassword] = useState(null);
 
   const navigation = useNavigation();
   const [modalOpen, setModalOpen] = useState(false);
   const colors = useTheme().colors;
+
+  console.log(auth);
 
   const handleSubmit = async (e) => {
     try {
