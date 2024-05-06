@@ -22,6 +22,7 @@ import Art from "../../src/screens/settings/Art";
 import About from "../../src/screens/auth/About";
 
 import ShowView from "../../src/screens/showview/ShowView";
+import PrimeShow from "../../src/screens/showview/PrimeShow";
 
 import Logo from "../../assets/images/MillennialsPrimeLogoNB.png";
 import colors from "../../styles/colors";
@@ -68,9 +69,9 @@ function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: { position: "absolute" },
-        headerStyle: {
-          backgroundColor: "#611821",
-        },
+        // headerStyle: {
+        //   backgroundColor: "#611821",
+        // },
         headerTintColor: "#020101",
         tabBarActiveTintColor: "#fffd9b",
         tabBarInactiveTintColor: "#020101",
@@ -102,7 +103,8 @@ function TabNavigator() {
       /> */}
       <Tab.Screen
         name="Episodes"
-        component={ShowView}
+        component={ShowViewStack}
+        // component={ShowViewStackNavigator}
         // options={{
         //   title: "Log In",
         //   headerStyle: {
@@ -209,6 +211,40 @@ function StackNavigator() {
       <Stack.Screen
         name="Art"
         component={Art}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function ShowViewStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Episodes"
+        component={ShowView}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header
+        //         navigation={navigation}
+        //         title="Welcome to Millennial's Prime"
+        //       />
+        //     ),
+        //   };
+        // }}
+      />
+
+      <Stack.Screen
+        name="PrimeShow"
+        component={PrimeShow}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {

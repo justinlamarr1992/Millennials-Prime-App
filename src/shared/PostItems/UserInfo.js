@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { globalStyles } from "../../styles/global";
-
-import pic from "../../assets/images/MillennialsPrimeLogoNB.png";
-
+import { globalStyles } from "../../../styles/global";
+import pic from "../../../assets/images/MillennialsPrimeLogoNB.png";
 export default function UserInfo({ prime, name, time }) {
   // console.log(prime, name, time);
   return (

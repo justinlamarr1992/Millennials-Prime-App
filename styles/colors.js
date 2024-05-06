@@ -22,6 +22,7 @@ const light = {
     linkC: "#8e202b",
     primCar: "#fffd9b",
     primeCarT: "#020101",
+    primeCarST: "#020101",
     showCar: "#611821",
     showCarT: "#ffffff",
 
@@ -48,6 +49,7 @@ const dark = {
     linkC: "#ddcd76",
     primCar: "#BD2932",
     primeCarT: "#020101",
+    primeCarST: "#8F92A1",
     showCar: "#b9a054",
     showCarT: "#ffffff",
     ...commonColor.colors,

@@ -18,6 +18,11 @@
   },
   "submit": {
     "production": {
+      "ios": {
+        "appleId": "justappinllc@gmail.com",
+        "ascAppId":"6502195387",
+        "appleTeamId": "F3J29B98P2"
+      }
     }
   }
 

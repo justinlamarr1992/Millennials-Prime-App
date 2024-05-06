@@ -3,9 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
-import PreviewCard from "../../../shared/ShowView/PreviewCard";
-import PrimeCard from "../../../shared/ShowView/PrimeCard";
 import axios from "../../API/axios";
+import PrimeCard from "../../shared/ShowView/PrimeCard";
 
 export default function ShowView() {
   const { auth, isLoading } = useContext(AuthContext);
@@ -13,70 +12,43 @@ export default function ShowView() {
   const colors = useTheme().colors;
 
   //   const [videos, setVideos] = useState({});
-  var videos = [];
-  var testArray = [];
+  const [videoData, setVideoData] = useState();
+  // var videoData = [];
+  let mappedVideos;
   //   Get Library Videos from bunny.net
-  const getVideos = async () => {
-    setIsLoading(true);
-    try {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          AccessKey: "4c5ea068-0b40-40ae-8d9b2865c27c-f2d3-4fd9",
-        },
-      };
 
-      const response = await axios.get(
-        "https://video.bunnycdn.com/library/181057/videos?page=1&itemsPerPage=100&orderBy=date",
-        options
-      );
+  useEffect(() => {
+    mapVideos();
+  }, [auth]);
 
-      console.log(
-        `Response from Bunny.net ===> ${JSON.stringify(
-          response.data.items,
-          null,
-          2
-        )}`
-      );
-      testArray = response.data.items;
-      //   console.log(
-      //     "The test Array in fetch",
-      //     JSON.stringify(testArray, null, 2)
-      //   );
-      //   console.log(
-      //     "The first item in Test Array",
-      //     JSON.stringify(testArray[0], null, 2)
-      //   );
-      console.log(testArray.length);
-      //   setVideos(response.data.items);
-      //   videos = response.data.items;
-    } catch (err) {
-      console.log(`Error in ShowView getVideo() ===> ${err}`);
-    }
-    // setIsLoading(false);
+  const mapVideos = () => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        AccessKey: "8ad268ac-6b0a-46fb-92d9b1a6d918-c4e1-4edf",
+      },
+    };
 
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     accept: "application/json",
-    //     AccessKey: "4c5ea068-0b40-40ae-8d9b2865c27c-f2d3-4fd9",
-    //   },
-    // };
+    fetch(
+      "https://video.bunnycdn.com/library/181057/videos?page=1&itemsPerPage=100&orderBy=date",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setVideoData(response.items); //This gets the first video
+        console.log(`The items inside fetch is ${response.items[0]}`);
+        console.log(`The Amount of items inside fetch is ${videoData.length}`);
+      })
+      .catch((err) => console.error(err));
 
-    // fetch(
-    //   "https://video.bunnycdn.com/library/181057/videos?page=1&itemsPerPage=100&orderBy=date",
-    //   options
-    // )
-    //   .then((response) => response.json())
-    //   .then((response) => console.log(response))
-    //   .catch((err) => console.error(err));
+    // if (videoData.hasOwnProperty("availableResolutions")) {
+    //   console.log(`It has all the right stuff which is ${videoData}`);
+    // } else {
+    //   console.log(`Something happened`);
+    // }
   };
 
-  getVideos();
-
-  //   console.log(`These are the items in Video ${videos}`);
-  console.log(testArray.length);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
@@ -87,9 +59,28 @@ export default function ShowView() {
         ]}
       >
         <Text style={{ color: colors.priT }}>ShowView</Text>
-        {testArray.map((video, index) => (
-          <PrimeCard title="test Title" description="Test Dec" />
+        {videoData?.map((videos) => (
+          <PrimeCard
+            videoLibraryId={videos.videoLibraryId}
+            guid={videos.guid}
+            title={videos.title}
+            description={videos.videoLibraryId}
+            dateUploaded={videos.dateUploaded}
+          />
         ))}
+        {/* {mappedVideos ? (
+          videoData.map((videos) => (
+            <PrimeCard title="testing" description="Test Dec" />
+          ))
+        ) : (
+          <Text style={{ color: colors.triC }}>No Video Data</Text>
+        )} */}
+        {/* {videoData ? (
+          <PrimeCard title="Test" description="Test" />
+        ) : (
+          <Text style={{ color: colors.triC }}>No Video Data</Text>
+        )} */}
+
         {/* <PrimeCard title="test Title" description="Test Dec" />
         <PreviewCard title="test Title" description="Test Dec" />
         <PreviewCard title="test Title" description="Test Dec" />

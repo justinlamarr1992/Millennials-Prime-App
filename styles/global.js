@@ -15,6 +15,7 @@ export const globalStyles = StyleSheet.create({
     letterSpacing: 1,
   },
   showViewDescription: {},
+  showViewTime: {},
   flex1: {
     flex: 1,
   },

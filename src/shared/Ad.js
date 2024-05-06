@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-import { globalStyles } from "../styles/global";
 import { LinearGradient } from "expo-linear-gradient";
+import { globalStyles } from "../../styles/global";
 
 export default function Ad({ title, description }) {
   return (

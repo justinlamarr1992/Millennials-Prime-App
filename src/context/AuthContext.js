@@ -83,9 +83,9 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    console.log(`UseState setAuth was changed to ${auth}`);
-  }, [auth]);
+  // useEffect(() => {
+  //   console.log(`UseState setAuth was changed to ${auth}`);
+  // }, [auth]);
 
   const logout = async () => {
     setIsLoading(true);
@@ -139,16 +139,9 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(true);
 
       let authLoggedIn = await AsyncStorage.getItem("auth");
-      console.log(
-        `We need to get rid og this ${await AsyncStorage.getItem("auth")}`
-      );
       setAuth(authLoggedIn);
 
       if (auth) {
-        console.log(
-          "this is the Auth from isLoggedIn in AuthContext ",
-          authLoggedIn
-        );
         let accessToken = await AsyncStorage.getItem("accessToken");
         setAccessToken(accessToken);
         let id = await AsyncStorage.getItem("_id");

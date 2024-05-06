@@ -302,7 +302,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.justappin.millennialsprime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justappin.millennials-prime";
 				PRODUCT_NAME = "MillennialsPrime";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -329,7 +329,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.justappin.millennialsprime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justappin.millennials-prime";
 				PRODUCT_NAME = "MillennialsPrime";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
