@@ -17,7 +17,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.justappin.millennials_prime"
+      "bundleIdentifier": "com.justappin.millennials_prime",
+      "buildNumber":"2"
     },
     "android": {
       "adaptiveIcon": {
