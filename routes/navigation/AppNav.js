@@ -6,6 +6,7 @@ import {
   Image,
 } from "@react-navigation/native";
 import React, { useContext } from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { AuthContext } from "../../src/context/AuthContext";
 
@@ -30,6 +31,8 @@ import colors from "../../styles/colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { useTheme } from "@react-navigation/native";
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +52,7 @@ const AppNav = () => {
 
   if (isLoading) {
     return (
+      // utilize dark and light here
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size={"large"} />
       </View>
@@ -65,19 +69,34 @@ function LogoTitle() {
   return <Image style={{ width: 44, height: 40 }} source={Logo} />;
 }
 function TabNavigator() {
+  const colors1 = useTheme().colors;
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: { position: "absolute" },
-        // headerStyle: {
-        //   backgroundColor: "#611821",
-        // },
-        headerTintColor: "#020101",
-        tabBarActiveTintColor: "#fffd9b",
-        tabBarInactiveTintColor: "#020101",
-        tabBarActiveBackgroundColor: "#611821",
-        tabBarInactiveBackgroundColor: "#611821",
-      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "Episodes") {
+            iconName = focused ? "play-circle" : "play-circle-outline";
+          } else if (route.name === "Log Out") {
+            iconName = focused ? "log-out" : "log-out-outline";
+          }
+          // else if (route.name === "Settings") {
+          //   iconName = focused ? "ios-list" : "ios-list-outline";
+          // } else if (route.name === "Settings") {
+          //   iconName = focused ? "ios-list" : "ios-list-outline";
+          // }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: colors1.actTabText,
+        tabBarActiveBackgroundColor: colors1.inActTab,
+        tabBarInactiveTintColor: colors1.inActTabText,
+        tabBarInactiveBackgroundColor: colors1.inActTab,
+      })}
     >
       <Tab.Screen
         name="Home"
@@ -104,40 +123,42 @@ function TabNavigator() {
       <Tab.Screen
         name="Episodes"
         component={ShowViewStack}
-        // component={ShowViewStackNavigator}
-        // options={{
-        //   title: "Log In",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       />
       <Tab.Screen
         name="Log Out"
         component={LogOut}
-        // options={{
-        //   title: "Register",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       />
     </Tab.Navigator>
   );
 }
 
 function StackNavigator() {
+  const colors1 = useTheme().colors;
+
   return (
     <Stack.Navigator
-    //   Default header for pages not speified
-    // screenOptions={{
-    //   headerStyle: {
-    //     backgroundColor: "#fffd9b",
-    //   },
-    //   headerTintColor: "#020101",
-    // }}
+      //   Default header for pages not speified
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
     >
       {/* Home Stack Navigator */}
       {/* <Stack.Screen
@@ -225,8 +246,18 @@ function StackNavigator() {
   );
 }
 function ShowViewStack() {
+  const colors1 = useTheme().colors;
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
       <Stack.Screen
         name="Episodes"
         component={ShowView}
@@ -260,8 +291,18 @@ function ShowViewStack() {
 }
 
 function AuthStack() {
+  const colors1 = useTheme().colors;
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        // headerTitle: (props) => <LogoTitle {...props} />,
+        headerStyle: {
+          backgroundColor: "#611821",
+        },
+        headerTintColor: colors1.text,
+      }}
+    >
       {/* <Stack.Screen name='Onboarding' component={}/> HAVENT MADE ON BOARDING SCREEN YET*/}
       <Stack.Screen name="Sign In" component={SignIn} />
       <Stack.Screen name="Register" component={Register} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -21,6 +21,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { globalStyles } from "../../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { AuthContext } from "../../context/AuthContext";
 // import UserInfo from "./PostItems/UserInfo";
 
 import axios from "axios";
@@ -31,6 +32,7 @@ const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export default function Register() {
+  const { register, auth } = useContext(AuthContext);
   const navigation = useNavigation();
   const colors = useTheme().colors;
 
@@ -84,32 +86,8 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    let dataToSubmit = {
-      user,
-      password,
-      firstName,
-      lastName,
-      DOB,
-    };
-
     try {
-      const response = await axios.post(
-        "https://us-central1-millennialsprime.cloudfunctions.net/api/register",
-        dataToSubmit,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log("in the try");
-      console.log(JSON.stringify(response?.data));
-      const accessToken = response?.data?.accessToken;
-      setSuccess(true);
-      setAuth({ user, password, accessToken });
-      setUser("");
-      setPassword("");
-      setMatchPassword("");
-      setDOB("");
+      register(user, password, firstName, lastName, DOB);
     } catch (err) {
       console.log("ERROR ==>", err);
       if (!err?.originalStatus) {
@@ -164,7 +142,10 @@ export default function Register() {
             },
           ]}
         >
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={globalStyles.scrollView}
+          >
             <View style={globalStyles.formTitle}>
               <Text style={[globalStyles.titleText, { color: colors.text }]}>
                 Create an Account
@@ -176,10 +157,9 @@ export default function Register() {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Enter First Name"
-                placeholderTextColor="#C4C4C4"
+                // placeholderTextColor="#C4C4C4"
                 onChangeText={(text) => {
                   setFirstName(text);
-                  console.log(firstName);
                 }}
               ></TextInput>
             </View>
@@ -188,10 +168,9 @@ export default function Register() {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Enter Last Name"
-                placeholderTextColor="#C4C4C4"
+                // placeholderTextColor="#C4C4C4"
                 onChangeText={(text) => {
                   setLastName(text);
-                  console.log(lastName);
                 }}
               ></TextInput>
             </View>
@@ -200,11 +179,10 @@ export default function Register() {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Enter Email"
-                placeholderTextColor="#C4C4C4"
+                // placeholderTextColor="#C4C4C4"
                 keyboardType="email-address"
                 onChangeText={(text) => {
                   setUser(text);
-                  console.log(user);
                 }}
               ></TextInput>
             </View>
@@ -213,12 +191,11 @@ export default function Register() {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Enter Password"
-                placeholderTextColor="#C4C4C4"
+                // placeholderTextColor="#C4C4C4"
                 secureTextEntry={true}
                 //   autoCorrect={false}
                 onChangeText={(text) => {
                   setPassword(text);
-                  console.log(password);
                 }}
               ></TextInput>
             </View>
@@ -227,11 +204,10 @@ export default function Register() {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Confirm Password"
-                placeholderTextColor="#C4C4C4"
+                // placeholderTextColor="#C4C4C4"
                 secureTextEntry={true}
                 onChangeText={(text) => {
                   setMatchPassword(text);
-                  console.log(matchPassword);
                 }}
               ></TextInput>
             </View>
@@ -291,8 +267,9 @@ export default function Register() {
                   <TextInput
                     style={globalStyles.input}
                     placeholder="Birthday"
-                    value={dateOfBirth}
-                    onChangeText={setDateOfBirth}
+                    // placeholderTextColor="#C4C4C4"
+                    value={DOB}
+                    onChangeText={setDOB}
                     editable={false}
                     onPressIn={toggleDatePicker}
                   />

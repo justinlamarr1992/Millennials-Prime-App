@@ -12,6 +12,25 @@ export const AuthProvider = ({ children }) => {
   const [id, setId] = useState(null);
   const [roles, setRoles] = useState(null);
 
+  const register = async (user, password, firstName, lastName, DOB) => {
+    let values = { user, password, firstName, lastName, DOB };
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "https://us-central1-millennialsprime.cloudfunctions.net/api/register",
+        values,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      // console.log(JSON.stringify(response?.data));
+    } catch (err) {
+      console.log(`The error for register() in Auth Provider is ${err}`);
+    }
+    setIsLoading(false);
+  };
+
   const login = async (user, password) => {
     let values = { user, password };
     setIsLoading(true);
@@ -162,6 +181,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        register,
         login,
         logout,
         auth,

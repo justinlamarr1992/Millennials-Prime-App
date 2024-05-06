@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  scrollView: { marginBottom: 70 },
   showView: {
     borderWidth: 1,
     borderColor: "#b9a054",
