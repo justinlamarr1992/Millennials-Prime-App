@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -38,6 +38,10 @@ export default function Register() {
 
   const [modalOpen, setModalOpen] = useState(false);
 
+  const ref = useRef(null);
+  const userRef = useRef();
+  const errRef = useRef();
+
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
@@ -60,6 +64,19 @@ export default function Register() {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    setValidName(USER_REGEX.test(user));
+  }, [user]);
+
+  useEffect(() => {
+    setValidPassword(PASSWORD_REGEX.test(password));
+    setValidMatch(password === matchPassword);
+  }, [password, matchPassword]);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, password, matchPassword]);
 
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
@@ -86,6 +103,14 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
+    const v1 = USER_REGEX.test(user);
+    const v2 = PASSWORD_REGEX.test(password);
+
+    if (!v1 || !v2) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+
     try {
       register(user, password, firstName, lastName, DOB);
     } catch (err) {
@@ -129,6 +154,9 @@ export default function Register() {
           >
             <Text style={globalStyles.buttonText}>Login</Text>
           </Pressable>
+          <Text style={[globalStyles.errorText, { color: colors.secC }]}>
+            {errMsg}
+          </Text>
         </View>
         <View
           style={[
@@ -287,6 +315,9 @@ export default function Register() {
                 Create an Account
               </Text>
             </Pressable>
+            <Text style={[globalStyles.errorText, { color: colors.secC }]}>
+              {errMsg}
+            </Text>
             {/* <Text>Connect with Socials</Text> */}
           </ScrollView>
         </View>

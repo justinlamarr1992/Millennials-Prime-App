@@ -24,6 +24,7 @@ import About from "../../src/screens/auth/About";
 
 import ShowView from "../../src/screens/showview/ShowView";
 import PrimeShow from "../../src/screens/showview/PrimeShow";
+import UploadContent from "../../src/screens/upload/UploadContent";
 
 import Logo from "../../assets/images/MillennialsPrimeLogoNB.png";
 import colors from "../../styles/colors";
@@ -82,12 +83,11 @@ function TabNavigator() {
             iconName = focused ? "play-circle" : "play-circle-outline";
           } else if (route.name === "Log Out") {
             iconName = focused ? "log-out" : "log-out-outline";
+          } else if (route.name === "Settings") {
+            iconName = focused ? "cog" : "cog-outline";
+          } else if (route.name === "Upload") {
+            iconName = focused ? "star" : "star-half-outline";
           }
-          // else if (route.name === "Settings") {
-          //   iconName = focused ? "ios-list" : "ios-list-outline";
-          // } else if (route.name === "Settings") {
-          //   iconName = focused ? "ios-list" : "ios-list-outline";
-          // }
 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -109,17 +109,29 @@ function TabNavigator() {
           headerTintColor: "#ffffff",
         }}
       />
-      {/* <Tab.Screen
-        name="My Info"
-        component={MyInfo}
-        // options={{
-        //   title: "Log In",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
-      /> */}
+      <Tab.Screen
+        // LATER will be a page to pick what to change (info, business, art) but for now settings
+        name="Settings"
+        component={SettingsStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      />
+      <Tab.Screen
+        name="Upload"
+        component={UploadStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      />
       <Tab.Screen
         name="Episodes"
         component={ShowViewStack}
@@ -240,6 +252,105 @@ function StackNavigator() {
         //   headerTintColor: "#ffffff",
         //   // headerBackground:,
         //   hideWhenScrolling: true,
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function SettingsStack() {
+  const colors1 = useTheme().colors;
+
+  return (
+    <Stack.Navigator
+      //   Default header for pages not speified
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      {/* <Stack.Screen
+        name="About"
+        component={About}
+        // options={{
+        //   title: "It Should Work",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      /> */}
+      <Stack.Screen
+        name="My Info"
+        component={MyInfo}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+      <Stack.Screen
+        name="Business"
+        component={Business}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+      <Stack.Screen
+        name="Art"
+        component={Art}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function UploadStack() {
+  const colors1 = useTheme().colors;
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      <Stack.Screen
+        name="Upload"
+        component={UploadContent}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header
+        //         navigation={navigation}
+        //         title="Welcome to Millennial's Prime"
+        //       />
+        //     ),
+        //   };
         // }}
       />
     </Stack.Navigator>

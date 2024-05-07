@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  errorText: { fontSize: 18 },
   scrollView: { marginBottom: 70 },
   showView: {
     borderWidth: 1,

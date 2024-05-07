@@ -3,7 +3,7 @@
     "name": "Millennials Prime",
     "slug": "millennials-prime",
     "description": "This is the App that will spread Love and bring this world back to the way its suppose to be.",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/mill-prime-icon.png",
     "userInterfaceStyle": "automatic",
@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.justappin.millennials_prime",
-      "buildNumber":"2"
+      "buildNumber":"3"
     },
     "android": {
       "adaptiveIcon": {
