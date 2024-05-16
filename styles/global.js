@@ -2,6 +2,14 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  borderDefault: {
+    borderWidth: 1,
+    borderColor: "#b9a054",
+    // backgroundColor: "#fffd9b",
+    padding: 10,
+    borderRadius: 10,
+  },
+  uploadBox: { backgroundColor: "#ffffff" },
   errorText: { fontSize: 18 },
   scrollView: { marginBottom: 70 },
   showView: {
@@ -67,6 +75,9 @@ export const globalStyles = StyleSheet.create({
   padding: {
     padding: 20,
   },
+  paddingTest: {
+    padding: 200,
+  },
   bottomPadding: { paddingBottom: 40 },
   bottomPadding20: { paddingBottom: 20 },
   bottomPadding10: { paddingBottom: 10 },
@@ -78,6 +89,7 @@ export const globalStyles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
+  margin: { margin: 20 },
   vertMargin: {
     marginTop: 10,
     marginBottom: 10,

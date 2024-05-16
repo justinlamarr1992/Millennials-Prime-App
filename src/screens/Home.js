@@ -170,7 +170,7 @@ export default function Home() {
             style={{ color: colors.priT }}
             onPress={() => navigation.navigate("My Info")}
           >
-            My Info
+            My Info x
           </Text>
           {/* <Text
             style={{ color: colors.priT }}
@@ -186,7 +186,7 @@ export default function Home() {
           </Text> */}
 
           {id ? (
-            <Text style={{ color: colors.quaC }}>ID is Good</Text>
+            <Text style={{ color: colors.quaC }}>ID is ood</Text>
           ) : (
             <Text style={{ color: colors.triC }}>No ID</Text>
           )}

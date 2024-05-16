@@ -38,7 +38,7 @@ export default function ShowView() {
       .then((response) => {
         setVideoData(response.items); //This gets the first video
         console.log(`The items inside fetch is ${response.items[0]}`);
-        console.log(`The Amount of items inside fetch is ${videoData.length}`);
+        // console.log(`The Amount of items inside fetch is ${videoData.length}`);
       })
       .catch((err) => console.error(err));
 
@@ -61,6 +61,7 @@ export default function ShowView() {
         <Text style={{ color: colors.priT }}>ShowView</Text>
         {videoData?.map((videos) => (
           <PrimeCard
+            key={videos.guid}
             videoLibraryId={videos.videoLibraryId}
             guid={videos.guid}
             title={videos.title}
