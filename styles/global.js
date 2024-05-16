@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  videoUpload: { width: 200, height: 200 },
   borderDefault: {
     borderWidth: 1,
     borderColor: "#b9a054",

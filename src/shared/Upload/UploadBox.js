@@ -1,17 +1,24 @@
-import { View, Text, Pressable, TextInput } from "react-native";
+import { View, Text, Pressable, TextInput, ScrollView } from "react-native";
 import React, { useState, useRef, useContext } from "react";
 import { Picker } from "@react-native-picker/picker";
 import * as ImagePicker from "expo-image-picker";
+import ImagePickerComponent from "./ImagePickerComponent";
 import { useTheme } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
 import { AuthContext } from "../../context/AuthContext";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 export default function UploadBox() {
+  const axiosPrivate = useAxiosPrivate();
   // AuthContext
   const { id } = useContext(AuthContext);
   const _id = id;
 
-  //   var tus = require("tus-js-client");
+  let videoFile;
+
+  let formData = new FormData();
+
+  var tus = require("tus-js-client");
 
   // Use States
   const [upload, setUpload] = useState(null);
@@ -35,6 +42,8 @@ export default function UploadBox() {
     duration,
     thumbnail,
   });
+
+  const [valueStuff, setValueStuff] = useState(false);
 
   //   Use Refs
   const uploadRef = useRef(false);
@@ -71,7 +80,7 @@ export default function UploadBox() {
             // AccessKey: "a80779d4-9931-4345-80c1ca2315d2-fc09-4143",
           },
           // body: `{"title":"(Pre upload) Creating Video ${title} ${new Date()}"}`,
-          body: `{"title":"${title} ${new Date()}","metaTags":[{"property":"description","value":"${description}"}, {"property":"prime","value":"${prime}"},{"property":"category","value":"${category}"},{"property":"userPosting","value":"${_id}"}]}`,
+          body: `{"title":"${title} ${new Date()}"}`,
         };
 
         fetch("https://video.bunnycdn.com/library/181057/videos", options)
@@ -114,10 +123,135 @@ export default function UploadBox() {
     setObject({ ...object, category: category });
     setCategoryPicker(false);
   };
-  const handleSubmit = () => {};
+  function setStuff(stuff) {
+    console.log("To the Parent its ", stuff);
+    setValueStuff(stuff);
+  }
+  //   stuff == videoValue
+  function handleVideoSelect(videoValue) {
+    // console.log("THIS IS THE INFO From Picture Picker ", videoValue);
+    videoFile = videoValue;
+    console.log("Video file after button click", videoFile);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      title === "" ||
+      description === "" ||
+      category === ""
+      // file === []
+      // file === ""
+      // duration === "" ||
+      // thumbnail === ""
+    )
+      return alert("Fill all of the fileds");
+
+    formData = {
+      userPosting: _id,
+      title: title,
+      description: description,
+      prime: prime,
+      // file: file,
+      category: category,
+      duration: duration,
+      thumbnail: thumbnail,
+      videoID: videoID,
+      // later library ID if a Prime Submitter
+    };
+
+    const sendToBackEnd = async () => {
+      try {
+        console.log("Video file before backend data", videoFile);
+
+        const response = await axiosPrivate.post(`/videos/bunnyInfo`, formData);
+        console.log(response.data);
+        if (response.data.success === true) {
+          try {
+            console.log("Video file after backend data", videoFile);
+            // Create a new tus upload
+            var upload = new tus.Upload(videoFile, {
+              // var upload = new tus.Upload(file, {
+              endpoint: "https://video.bunnycdn.com/tusupload",
+              retryDelays: [0, 3000, 5000, 10000, 20000, 60000, 60000],
+              headers: {
+                AuthorizationSignature: response.data.shaAttempt, // SHA256 signature (library_id + api_key + expiration_time + video_id)
+                AuthorizationExpire: response.data.authorizationExpire, // Expiration time as in the signature,
+                VideoId: response.data.video_id,
+                // "video-guid", // The guid of a previously created video object through the Create Video API call
+                LibraryId: response.data.libraryId,
+              },
+              metadata: {
+                filetype: videoFile.type,
+                title: "Is this where the title is changed",
+                collection: "collectionID",
+              },
+              onError: function (error) {
+                console.log("ERROR", error);
+              },
+              onProgress: function (bytesUploaded, bytesTotal) {
+                console.log(
+                  bytesTotal,
+                  "Bytes Total",
+                  bytesUploaded,
+                  "Bytes Uploaded"
+                );
+              },
+              onSuccess: function () {
+                console.log("The video Uploaded Great Job");
+              },
+            });
+            // Check if there are any previous uploads to continue.
+            upload.findPreviousUploads().then(function (previousUploads) {
+              // Found previous uploads so we select the first one.
+              if (previousUploads.length) {
+                upload.resumeFromPreviousUpload(previousUploads[0]);
+              }
+              // Start the upload
+              upload.start();
+            });
+            console.log("It Does");
+          } catch (err) {
+            console.log("ERROR", err);
+          }
+        }
+      } catch (err) {
+        alert("Change this later because you have an err", err);
+      } finally {
+        // EDIT VIDEO may need to move this to the backend
+        const options = {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "content-type": "application/*+json",
+            // Test
+            AccessKey: "8ad268ac-6b0a-46fb-92d9b1a6d918-c4e1-4edf",
+            // Live
+            // AccessKey: "a80779d4-9931-4345-80c1ca2315d2-fc09-4143",
+          },
+          body: `{"title":"${title}"}`,
+        };
+
+        fetch(
+          `https://video.bunnycdn.com/library/181057/videos/${videoID}`,
+          // `https://video.bunnycdn.com/library/181057/videos/${video.guid}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            console.log("This is the newly Edited video", response);
+          })
+          .catch((err) => console.error(err));
+      }
+    };
+    sendToBackEnd();
+  };
 
   return (
-    <View style={[globalStyles.uploadBox, globalStyles.borderDefault]}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={[globalStyles.uploadBox, globalStyles.borderDefault]}
+    >
       <Text style={[globalStyles.titleText, {}]}>
         Millennial's Prime News Upload
       </Text>
@@ -261,6 +395,10 @@ export default function UploadBox() {
                 </Picker>
               )}
             </View>
+            <ImagePickerComponent
+              handleVideoSelect={handleVideoSelect}
+              //   handleVideoSelect={(value) => handleVideoSelect(value)}
+            />
           </View>
         )}
         {upload == "Music" && <Text>Music stuff goes here</Text>}
@@ -281,6 +419,6 @@ export default function UploadBox() {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   );
 }

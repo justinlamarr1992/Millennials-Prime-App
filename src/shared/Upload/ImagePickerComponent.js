@@ -1,8 +1,10 @@
-import { View, Text } from "react-native";
+import { View, Text, Button, Image } from "react-native";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import { globalStyles } from "../../../styles/global";
 
-export default function ImagePickerComponent() {
+function ImagePickerComponent(props) {
+  const { handleVideoSelect } = props;
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
@@ -14,11 +16,23 @@ export default function ImagePickerComponent() {
       aspect: [4, 3],
       quality: 1,
     });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      handleVideoSelect(result.assets[0].uri);
+    }
   };
 
   return (
     <View>
-      <Text>ImagePickerComponent</Text>
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image && (
+        <Image source={{ uri: image }} style={globalStyles.videoUpload} />
+      )}
     </View>
   );
 }
+
+export default ImagePickerComponent;
