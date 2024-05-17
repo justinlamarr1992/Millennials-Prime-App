@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  primeCardLeft: { width: "auto", flexGrow: 2 },
+  primeCardRight: { width: "auto" },
   videoUpload: { width: 200, height: 200 },
   borderDefault: {
     borderWidth: 1,
@@ -30,7 +32,8 @@ export const globalStyles = StyleSheet.create({
   flex1: {
     flex: 1,
   },
-
+  flexColumn: { flexDirection: "column" },
+  flexRow: { flexDirection: "row" },
   // SignIn View
   signInScreen: {
     backgroundColor: "#000000",

@@ -27,6 +27,7 @@ import axios from "axios";
 export default function Home() {
   const { logout, test, auth, id, accessToken, roles } =
     useContext(AuthContext);
+  // console.log(roles);
 
   const navigation = useNavigation();
   const colors = useTheme().colors;

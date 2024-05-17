@@ -21,7 +21,8 @@ function ImagePickerComponent(props) {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
-      handleVideoSelect(result.assets[0].uri);
+      handleVideoSelect(result);
+      //   handleVideoSelect(result.assets[0].uri);
     }
   };
 

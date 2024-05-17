@@ -7,7 +7,7 @@ import axios from "../../API/axios";
 import PrimeCard from "../../shared/ShowView/PrimeCard";
 
 export default function ShowView() {
-  const { auth, isLoading } = useContext(AuthContext);
+  const { auth, isLoading, roles } = useContext(AuthContext);
   const navigation = useNavigation;
   const colors = useTheme().colors;
 
@@ -59,6 +59,7 @@ export default function ShowView() {
         ]}
       >
         <Text style={{ color: colors.priT }}>ShowView</Text>
+        <Text style={{ color: colors.priT }}>Roles</Text>
         {videoData?.map((videos) => (
           <PrimeCard
             key={videos.guid}

@@ -130,7 +130,7 @@ export default function UploadBox() {
   //   stuff == videoValue
   function handleVideoSelect(videoValue) {
     // console.log("THIS IS THE INFO From Picture Picker ", videoValue);
-    videoFile = videoValue;
+    videoFile = videoValue.assets[0];
     console.log("Video file after button click", videoFile);
   }
   const handleSubmit = (e) => {
@@ -162,13 +162,16 @@ export default function UploadBox() {
 
     const sendToBackEnd = async () => {
       try {
+        console.log("Step 1");
         console.log("Video file before backend data", videoFile);
 
         const response = await axiosPrivate.post(`/videos/bunnyInfo`, formData);
         console.log(response.data);
         if (response.data.success === true) {
           try {
-            console.log("Video file after backend data", videoFile);
+            // console.log("Video file after backend data", videoFile);
+            // console.log("Video file individual data", videoFile);
+            console.log("Step 2");
             // Create a new tus upload
             var upload = new tus.Upload(videoFile, {
               // var upload = new tus.Upload(file, {
@@ -187,9 +190,11 @@ export default function UploadBox() {
                 collection: "collectionID",
               },
               onError: function (error) {
+                console.log("Step 2.5");
                 console.log("ERROR", error);
               },
               onProgress: function (bytesUploaded, bytesTotal) {
+                console.log("Step 3");
                 console.log(
                   bytesTotal,
                   "Bytes Total",
@@ -198,6 +203,7 @@ export default function UploadBox() {
                 );
               },
               onSuccess: function () {
+                console.log("Step 4");
                 console.log("The video Uploaded Great Job");
               },
             });
@@ -205,12 +211,14 @@ export default function UploadBox() {
             upload.findPreviousUploads().then(function (previousUploads) {
               // Found previous uploads so we select the first one.
               if (previousUploads.length) {
+                console.log("Step 5");
                 upload.resumeFromPreviousUpload(previousUploads[0]);
               }
               // Start the upload
+              console.log("Step 6");
               upload.start();
             });
-            console.log("It Does");
+            console.log("Step 7");
           } catch (err) {
             console.log("ERROR", err);
           }
@@ -218,6 +226,7 @@ export default function UploadBox() {
       } catch (err) {
         alert("Change this later because you have an err", err);
       } finally {
+        console.log("Step 8");
         // EDIT VIDEO may need to move this to the backend
         const options = {
           method: "POST",
@@ -245,6 +254,7 @@ export default function UploadBox() {
       }
     };
     sendToBackEnd();
+    console.log("Step 9");
   };
 
   return (
