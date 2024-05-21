@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { globalStyles } from "../../../styles/global";
+import { useTheme } from "@react-navigation/native";
 import pic from "../../../assets/images/MillennialsPrimeLogoNB.png";
-export default function UserInfo({ prime, name, time }) {
+export default function UserInfo() {
+  // export default function UserInfo({ prime, name, time }) {
+  let name = "Test Name";
+  let time = Date.now();
+  let prime = false;
+  const colors = useTheme().colors;
   // console.log(prime, name, time);
   return (
     <View style={globalStyles.postUserInfo}>
@@ -21,6 +27,7 @@ export default function UserInfo({ prime, name, time }) {
         >
           {name ? name : "Loading"}
         </Text>
+        {/* Add useTheme here to determin is colo rchanges are needed based off of prime or not */}
         <Text style={globalStyles.postUserInfoTime}>
           {time ? time : "Loading"}
         </Text>

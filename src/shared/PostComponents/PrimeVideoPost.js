@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Button } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { WebView } from "react-native-webview";
 import { Video, ResizeMode } from "expo-av";
-import videoFile from "../assets/videos/video.mp4";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../../../styles/global";
 import { LinearGradient } from "expo-linear-gradient";
+import UserInfo from "./UserInfo";
+import colors from "../../../styles/colors";
 
-export default function PostComponent({ title, description }) {
+export default function VideoPost({ title, description }) {
+  const colors = useTheme().colors;
+
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
 
   return (
     <LinearGradient
       style={globalStyles.post}
-      colors={["#bd2932", "#a5242f", "#8e202b", "#771c26", "#611821"]}
+      colors={["#b9a054", "#cbb665", "#ddcd76", "#eee588", "#fffd9b"]}
     >
-      <Text style={{ ...globalStyles.primeTitle, ...globalStyles.postContent }}>
-        Prime News
-      </Text>
+      {/* User info here */}
+      <UserInfo />
       <WebView
         // source={{
         //   uri: "https://iframe.dacast.com/vod/4cb5f7e0-f945-e8aa-b1a8-62e9bf774b85/d71bda38-3ae5-40aa-8c24-93179412e432",
@@ -57,13 +60,27 @@ export default function PostComponent({ title, description }) {
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
       /> */}
 
-      <Text style={{ ...globalStyles.postTitle, ...globalStyles.postContent }}>
-        {title}
-      </Text>
+      {/* itle */}
+
       <Text
-        style={{ ...globalStyles.postDescription, ...globalStyles.postContent }}
+        style={[
+          globalStyles.postTitle,
+          globalStyles.postContent,
+          { color: colors.triT },
+        ]}
       >
-        {description}
+        This is a Video Post Title
+      </Text>
+      {/* description */}
+      <Text
+        style={[
+          globalStyles.postDescription,
+          globalStyles.postContent,
+          { color: colors.priT },
+        ]}
+      >
+        This is where the description of the pst willl go, but it will be
+        shortened to only two lines max...
       </Text>
       {/* <Text style={{ ...globalStyles.postLikes, ...globalStyles.postContent }}>
         Likes

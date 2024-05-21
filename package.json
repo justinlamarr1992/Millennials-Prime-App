@@ -44,7 +44,8 @@
     "react-native-web": "^0.19.11",
     "react-native-webview": "^13.10.2",
     "tus-js-client": "^4.1.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "expo-image": "~1.12.9"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5"

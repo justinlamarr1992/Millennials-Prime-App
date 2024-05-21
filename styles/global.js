@@ -2,6 +2,13 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: 200,
+    backgroundColor: "#0553",
+    borderRadius: 10,
+  },
   primeCardLeft: { width: "auto", flexGrow: 2 },
   primeCardRight: { width: "auto" },
   videoUpload: { width: 200, height: 200 },
@@ -272,6 +279,7 @@ export const globalStyles = StyleSheet.create({
   // User Info
   postUserInfo: {
     flexDirection: "row",
+    paddingBottom: 20,
   },
   postUserInfoImage: {
     width: "100%",
@@ -306,7 +314,8 @@ export const globalStyles = StyleSheet.create({
     // height: "50%",
     // width: 100,
   },
-
+  postTitle: { fontWeight: "bold", fontSize: 20, paddingTop: 10 },
+  postDescription: { fontSize: 16 },
   primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
 
   adPost: {

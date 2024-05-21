@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { useTheme, useNavigation } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
-import UserInfo from "../PostItems/UserInfo";
+import UserInfo from "../PostComponents/UserInfo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function PrimeCard({

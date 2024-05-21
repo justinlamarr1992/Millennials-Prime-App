@@ -3,10 +3,10 @@ import { StyleSheet, TouchableOpacity, Text, View, Button } from "react-native";
 import { WebView } from "react-native-webview";
 import { Video, ResizeMode } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
-import UserInfo from "./PostItems/UserInfo";
-import { globalStyles } from "../../styles/global";
+import UserInfo from "./UserInfo";
+import { globalStyles } from "../../../styles/global";
 
-export default function PrimePost({
+export default function PrimeNewsPost({
   prime,
   title,
   description,

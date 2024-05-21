@@ -1,4 +1,10 @@
-import { View, Text, useColorScheme, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  useColorScheme,
+  ActivityIndicator,
+  Button,
+} from "react-native";
 import {
   DarkTheme,
   DefaultTheme,
@@ -33,6 +39,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useTheme } from "@react-navigation/native";
+import User from "../../src/screens/social/User";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -87,6 +94,8 @@ function TabNavigator() {
             iconName = focused ? "cog" : "cog-outline";
           } else if (route.name === "Upload") {
             iconName = focused ? "star" : "star-half-outline";
+          } else if (route.name === "Users") {
+            iconName = focused ? "people-circle" : "people-circle-outline";
           }
 
           // You can return any component that you like here!
@@ -109,10 +118,23 @@ function TabNavigator() {
           headerTintColor: "#ffffff",
         }}
       />
-      <Tab.Screen
+      {/* Finding out how to put his as a button from homw */}
+      {/* <Tab.Screen
         // LATER will be a page to pick what to change (info, business, art) but for now settings
         name="Settings"
         component={SettingsStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      /> */}
+      <Tab.Screen
+        // LATER will be a page to pick what to change (info, business, art) but for now settings
+        name="Users"
+        component={UsersStack}
         options={{
           // headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
@@ -191,6 +213,15 @@ function StackNavigator() {
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{
+          headerRight: () => (
+            <Button
+              onPress={() => alert("This is a button!")}
+              title="Info"
+              color="#fff"
+            />
+          ),
+        }}
         // options={({ navigation }) => {
         //   return {
         //     headerTitle: () => (
@@ -244,6 +275,34 @@ function StackNavigator() {
       <Stack.Screen
         name="Art"
         component={Art}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function UsersStack() {
+  const colors1 = useTheme().colors;
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      <Stack.Screen
+        name="My Profile"
+        component={User}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {

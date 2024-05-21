@@ -13,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
 import { AuthContext } from "../../context/AuthContext";
-import UserInfo from "../../shared/PostItems/UserInfo";
+import UserInfo from "../../shared/PostComponents/UserInfo";
 
 import axios from "axios";
 

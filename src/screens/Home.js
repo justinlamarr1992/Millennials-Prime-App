@@ -17,12 +17,14 @@ import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../context/AuthContext";
 
 import Ad from "../shared/Ad";
-import PrimePost from "../shared/PrimePost";
+import PrimeNewsPost from "../shared/PostComponents/PrimeNewsPost.js";
 
 import { globalStyles } from "../../styles/global";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import axios from "axios";
+import ConnectedUsers from "./social/ConnectedUsers";
+import User from "./social/User";
 
 export default function Home() {
   const { logout, test, auth, id, accessToken, roles } =
@@ -148,7 +150,7 @@ export default function Home() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[globalStyles.padding]}>
-          <PrimePost
+          <PrimeNewsPost
             prime={prime}
             title={post.title}
             description={post.description}
@@ -158,6 +160,7 @@ export default function Home() {
             videoLibraryId={post.videoLibraryId}
           />
           <Ad />
+
           {/* <Text style={{ color: colors.priT }} onPress={logout}>
             Log Out
           </Text> */}
