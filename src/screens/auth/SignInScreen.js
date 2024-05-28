@@ -27,7 +27,7 @@ import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 // import colors from "../../styles/colors";
 
-export default function SignIn() {
+export default function SignInScreen() {
   // const { auth, setAuth } = useAuth();
   const { login, logout, auth } = useContext(AuthContext);
   const [user, setUser] = useState(null);
@@ -41,26 +41,6 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     try {
-      // console.log("Loging in from the Page and not Auth COntext");
-      // let dataToSubmit = { user, password };
-      // const response = await axios.post(
-      //   "https://us-central1-millennialsprime.cloudfunctions.net/api/auth",
-      //   dataToSubmit,
-      //   {
-      //     headers: { "Content-Type": "application/json" },
-      //     withCredentials: true,
-      //   }
-      // );
-      // console.log(JSON.stringify(response?.data));
-      // const accessToken = response?.data?.accessToken;
-      // const _id = response?.data._id;
-      // console.log(_id);
-      // setAuth({ user, accessToken, _id });
-      // setUser("");
-      // resetUser();
-      // setPassword("");
-
-      let dataToSubmit = { user, password };
       login(user, password);
     } catch (err) {
       console.log("ERROR===> ", err);
@@ -111,50 +91,55 @@ export default function SignIn() {
             },
           ]}
         >
-          <View style={globalStyles.formTitle}>
-            <Text style={[globalStyles.titleText, { color: colors.text }]}>
-              Welcome Back
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={globalStyles.scrollView}
+          >
+            <View style={globalStyles.formTitle}>
+              <Text style={[globalStyles.titleText, { color: colors.text }]}>
+                Welcome Back
+              </Text>
+              <Text style={globalStyles.labelText}>Sign in to Continue</Text>
+            </View>
+            <View style={globalStyles.labelInput}>
+              <Text style={globalStyles.labelText}>Email</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder="Enter Email"
+                value={user}
+                onChangeText={(text) => setUser(text)}
+              ></TextInput>
+            </View>
+            <View style={globalStyles.labelInput}>
+              <Text style={globalStyles.labelText}>Password</Text>
+              <TextInput
+                style={globalStyles.input}
+                placeholder="Enter Password"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+
+                // secureTextEntry={true}
+              ></TextInput>
+            </View>
+            <Pressable
+              style={[
+                globalStyles.button,
+                globalStyles.vertMargin,
+                { backgroundColor: colors.triC },
+              ]}
+              onPressIn={handleSubmit}
+            >
+              <Text style={globalStyles.buttonText}>Login</Text>
+            </Pressable>
+            <Text
+              style={[globalStyles.vertPadding, { color: colors.linkC }]}
+              onPress={() => navigation.navigate("Password Recovery")}
+            >
+              Forgot Password Link
             </Text>
-            <Text style={globalStyles.labelText}>Sign in to Continue</Text>
-          </View>
-          <View style={globalStyles.labelInput}>
-            <Text style={globalStyles.labelText}>Email</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder="Enter Email"
-              value={user}
-              onChangeText={(text) => setUser(text)}
-            ></TextInput>
-          </View>
-          <View style={globalStyles.labelInput}>
-            <Text style={globalStyles.labelText}>Password</Text>
-            <TextInput
-              style={globalStyles.input}
-              placeholder="Enter Password"
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-
-              // secureTextEntry={true}
-            ></TextInput>
-          </View>
-
-          <Pressable
-            style={[
-              globalStyles.button,
-              globalStyles.vertMargin,
-              { backgroundColor: colors.triC },
-            ]}
-            onPressIn={handleSubmit}
-          >
-            <Text style={globalStyles.buttonText}>Login</Text>
-          </Pressable>
-          <Text
-            style={[globalStyles.vertPadding, { color: colors.linkC }]}
-            onPress={() => navigation.navigate("Password Recovery")}
-          >
-            Forgot Password Link
-          </Text>
-          {/* <Text>Connect with Socials</Text> */}
+            {/* <Text>Connect with Socials</Text> */}
+          </ScrollView>
         </View>
       </View>
     </KeyboardAvoidingView>

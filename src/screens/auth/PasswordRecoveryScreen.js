@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { globalStyles } from "../../../styles/global";
 import { useNavigation, useTheme } from "@react-navigation/native";
 
-const PasswordRecovery = () => {
+const PasswordRecoveryScreen = () => {
   const navigation = useNavigation();
   const colors = useTheme().colors;
 
@@ -23,4 +23,4 @@ const PasswordRecovery = () => {
     </View>
   );
 };
-export default PasswordRecovery;
+export default PasswordRecoveryScreen;

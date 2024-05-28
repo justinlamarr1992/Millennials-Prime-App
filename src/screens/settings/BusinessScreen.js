@@ -27,7 +27,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import axios from "axios";
 
-export default function Business() {
+export default function BusinessScreen() {
   const navigation = useNavigation();
   const colors = useTheme().colors;
   const [modalOpen, setModalOpen] = useState(false);

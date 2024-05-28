@@ -8,6 +8,7 @@ const commonColor = {
 const light = {
   colors: {
     background: "#F7F7F7",
+    text: "#000000",
     white: "#000000",
     priT: "#020101",
     secT: "#ffffff",
@@ -22,8 +23,13 @@ const light = {
     linkC: "#8e202b",
     primCar: "#fffd9b",
     primeCarT: "#020101",
+    primeCarST: "#020101",
     showCar: "#611821",
     showCarT: "#ffffff",
+    inActTab: "#BD2932",
+    actTab: "#611821",
+    inActTabText: "#b9a054",
+    actTabText: "#fffd9b",
 
     ...commonColor.colors,
   },
@@ -48,8 +54,14 @@ const dark = {
     linkC: "#ddcd76",
     primCar: "#BD2932",
     primeCarT: "#020101",
+    primeCarST: "#8F92A1",
     showCar: "#b9a054",
     showCarT: "#ffffff",
+    inActTab: "#611821",
+    actTab: "#BD2932",
+    inActTabText: "#b9a054",
+    actTabText: "#fffd9b",
+
     ...commonColor.colors,
   },
 };

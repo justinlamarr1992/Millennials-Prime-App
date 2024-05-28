@@ -12,6 +12,25 @@ export const AuthProvider = ({ children }) => {
   const [id, setId] = useState(null);
   const [roles, setRoles] = useState(null);
 
+  const register = async (user, password, firstName, lastName, DOB) => {
+    let values = { user, password, firstName, lastName, DOB };
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "https://us-central1-millennialsprime.cloudfunctions.net/api/register",
+        values,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      // console.log(JSON.stringify(response?.data));
+    } catch (err) {
+      console.log(`The error for register() in Auth Provider is ${err}`);
+    }
+    setIsLoading(false);
+  };
+
   const login = async (user, password) => {
     let values = { user, password };
     setIsLoading(true);
@@ -83,9 +102,9 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    console.log(`UseState setAuth was changed to ${auth}`);
-  }, [auth]);
+  // useEffect(() => {
+  //   console.log(`UseState setAuth was changed to ${auth}`);
+  // }, [auth]);
 
   const logout = async () => {
     setIsLoading(true);
@@ -139,16 +158,9 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(true);
 
       let authLoggedIn = await AsyncStorage.getItem("auth");
-      console.log(
-        `We need to get rid og this ${await AsyncStorage.getItem("auth")}`
-      );
       setAuth(authLoggedIn);
 
       if (auth) {
-        console.log(
-          "this is the Auth from isLoggedIn in AuthContext ",
-          authLoggedIn
-        );
         let accessToken = await AsyncStorage.getItem("accessToken");
         setAccessToken(accessToken);
         let id = await AsyncStorage.getItem("_id");
@@ -169,6 +181,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        register,
         login,
         logout,
         auth,

@@ -1,4 +1,4 @@
-package com.justappin.millennialsprime
+package com.justappin.millennials-prime
 
 import android.app.Application
 import android.content.res.Configuration

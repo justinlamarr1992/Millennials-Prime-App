@@ -27,7 +27,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import axios from "axios";
 
-export default function Art() {
+export default function ArtScreen() {
   const navigation = useNavigation();
   const colors = useTheme().colors;
   const [modalOpen, setModalOpen] = useState(false);

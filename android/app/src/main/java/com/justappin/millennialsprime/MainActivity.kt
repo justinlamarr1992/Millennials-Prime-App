@@ -1,4 +1,4 @@
-package com.justappin.millennialsprime
+package com.justappin.millennials-prime
 
 import android.os.Build
 import android.os.Bundle

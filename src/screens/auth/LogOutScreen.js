@@ -20,7 +20,7 @@ import { useNavigation, useTheme } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function LogOut() {
+export default function LogOutScreen() {
   const { login, logout } = useContext(AuthContext);
   const navigation = useNavigation();
   const colors = useTheme().colors;

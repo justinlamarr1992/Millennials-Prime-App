@@ -31,7 +31,7 @@ import axios from "../../API/axios";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 // import axios from "axios";
 
-export default function MyInfo() {
+export default function MyInfoScreen() {
   const axiosPrivate = useAxiosPrivate();
   const { auth, accessToken, roles, id, logout, userInfo } =
     useContext(AuthContext);

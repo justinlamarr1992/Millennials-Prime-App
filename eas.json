@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 4.0.0"
+    
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -13,11 +14,17 @@
       "channel": "preview"
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+       "autoIncrement": true
     }
   },
   "submit": {
     "production": {
+      "ios": {
+        "appleId": "justappinllc@gmail.com",
+        "ascAppId":"6502195387",
+        "appleTeamId": "F3J29B98P2"
+      }
     }
   }
 

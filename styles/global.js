@@ -2,6 +2,26 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: 200,
+    backgroundColor: "#0553",
+    borderRadius: 10,
+  },
+  primeCardLeft: { width: "auto", flexGrow: 2 },
+  primeCardRight: { width: "auto" },
+  videoUpload: { width: 200, height: 200 },
+  borderDefault: {
+    borderWidth: 1,
+    borderColor: "#b9a054",
+    // backgroundColor: "#fffd9b",
+    padding: 10,
+    borderRadius: 10,
+  },
+  uploadBox: { backgroundColor: "#ffffff" },
+  errorText: { fontSize: 18 },
+  scrollView: { marginBottom: 70 },
   showView: {
     borderWidth: 1,
     borderColor: "#b9a054",
@@ -15,10 +35,12 @@ export const globalStyles = StyleSheet.create({
     letterSpacing: 1,
   },
   showViewDescription: {},
+  showViewTime: {},
   flex1: {
     flex: 1,
   },
-
+  flexColumn: { flexDirection: "column" },
+  flexRow: { flexDirection: "row" },
   // SignIn View
   signInScreen: {
     backgroundColor: "#000000",
@@ -64,6 +86,9 @@ export const globalStyles = StyleSheet.create({
   padding: {
     padding: 20,
   },
+  paddingTest: {
+    padding: 200,
+  },
   bottomPadding: { paddingBottom: 40 },
   bottomPadding20: { paddingBottom: 20 },
   bottomPadding10: { paddingBottom: 10 },
@@ -75,6 +100,7 @@ export const globalStyles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
+  margin: { margin: 20 },
   vertMargin: {
     marginTop: 10,
     marginBottom: 10,
@@ -229,7 +255,7 @@ export const globalStyles = StyleSheet.create({
     shadowRadius: 3,
   },
   postContent: {
-    marginVertical: 5,
+    marginVertical: 2,
   },
   postDescription: {
     color: "#8F92A1",
@@ -253,6 +279,7 @@ export const globalStyles = StyleSheet.create({
   // User Info
   postUserInfo: {
     flexDirection: "row",
+    paddingBottom: 5,
   },
   postUserInfoImage: {
     width: "100%",
@@ -287,7 +314,8 @@ export const globalStyles = StyleSheet.create({
     // height: "50%",
     // width: 100,
   },
-
+  postTitle: { fontWeight: "bold", fontSize: 20, paddingTop: 10 },
+  postDescription: { fontSize: 16 },
   primeTitle: { color: "#ffffff", fontWeight: "bold", fontSize: 30 },
 
   adPost: {

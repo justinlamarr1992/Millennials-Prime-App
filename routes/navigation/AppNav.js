@@ -1,4 +1,10 @@
-import { View, Text, useColorScheme, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  useColorScheme,
+  ActivityIndicator,
+  Button,
+} from "react-native";
 import {
   DarkTheme,
   DefaultTheme,
@@ -6,28 +12,37 @@ import {
   Image,
 } from "@react-navigation/native";
 import React, { useContext } from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { AuthContext } from "../../src/context/AuthContext";
 
-import Home from "../../src/screens/Home";
+import HomeScreen from "../../src/screens/HomeScreen";
 
-import Register from "../../src/screens/auth/Register";
-import SignIn from "../../src/screens/auth/SignIn";
-import LogOut from "../../src/screens/auth/LogOut";
-import PasswordRecovery from "../../src/screens/auth/PasswordRecovery";
+import RegisterScreen from "../../src/screens/auth/RegisterScreen";
+import SignInScreen from "../../src/screens/auth/SignInScreen";
+import LogOutScreen from "../../src/screens/auth/LogOutScreen";
+import PasswordRecoveryScreen from "../../src/screens/auth/PasswordRecoveryScreen";
 
-import MyInfo from "../../src/screens/settings/MyInfo";
-import Business from "../../src/screens/settings/Business";
-import Art from "../../src/screens/settings/Art";
-import About from "../../src/screens/auth/About";
+import MyInfoScreen from "../../src/screens/settings/MyInfoScreen";
+import BusinessScreen from "../../src/screens/settings/BusinessScreen";
+import ArtScreen from "../../src/screens/settings/ArtScreen";
+import AboutScreen from "../../src/screens/auth/AboutScreen";
 
-import ShowView from "../../src/screens/showview/ShowView";
+import UserScreen from "../../src/screens/social/UserScreen";
+import ConnectedUsersScreen from "../../src/screens/social/ConnectedUsersScreen";
+import MyProfileScreen from "../../src/screens/social/MyProfileScreen";
+
+import ShowViewScreen from "../../src/screens/showview/ShowViewScreen";
+import PrimeShowScreen from "../../src/screens/showview/PrimeShow";
+import UploadContentScreen from "../../src/screens/upload/UploadContentScreen";
 
 import Logo from "../../assets/images/MillennialsPrimeLogoNB.png";
 import colors from "../../styles/colors";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,6 +63,7 @@ const AppNav = () => {
 
   if (isLoading) {
     return (
+      // utilize dark and light here
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size={"large"} />
       </View>
@@ -64,22 +80,38 @@ function LogoTitle() {
   return <Image style={{ width: 44, height: 40 }} source={Logo} />;
 }
 function TabNavigator() {
+  const colors1 = useTheme().colors;
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: { position: "absolute" },
-        headerStyle: {
-          backgroundColor: "#611821",
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "HomeTab") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "EpisodesTab") {
+            iconName = focused ? "play-circle" : "play-circle-outline";
+          } else if (route.name === "LogOutTab") {
+            iconName = focused ? "log-out" : "log-out-outline";
+          } else if (route.name === "SettingsTab") {
+            iconName = focused ? "cog" : "cog-outline";
+          } else if (route.name === "UploadTab") {
+            iconName = focused ? "star" : "star-half-outline";
+          } else if (route.name === "UsersTab") {
+            iconName = focused ? "people-circle" : "people-circle-outline";
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
-        headerTintColor: "#020101",
-        tabBarActiveTintColor: "#fffd9b",
-        tabBarInactiveTintColor: "#020101",
-        tabBarActiveBackgroundColor: "#611821",
-        tabBarInactiveBackgroundColor: "#611821",
-      }}
+        tabBarActiveTintColor: colors1.actTabText,
+        tabBarActiveBackgroundColor: colors1.inActTab,
+        tabBarInactiveTintColor: colors1.inActTabText,
+        tabBarInactiveBackgroundColor: colors1.inActTab,
+      })}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={StackNavigator}
         options={{
           // headerTitle: (props) => <LogoTitle {...props} />,
@@ -89,53 +121,81 @@ function TabNavigator() {
           headerTintColor: "#ffffff",
         }}
       />
+      {/* Finding out how to put his as a button from homw */}
       {/* <Tab.Screen
-        name="My Info"
-        component={MyInfo}
-        // options={{
-        //   title: "Log In",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
+        // LATER will be a page to pick what to change (info, business, art) but for now settings
+        name="Settings"
+        component={SettingsStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       /> */}
       <Tab.Screen
-        name="Episodes"
-        component={ShowView}
-        // options={{
-        //   title: "Log In",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
+        // LATER will be a page to pick what to change (info, business, art) but for now settings
+        name="UsersTab"
+        component={UsersStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       />
       <Tab.Screen
-        name="Log Out"
-        component={LogOut}
-        // options={{
-        //   title: "Register",
-        //   headerStyle: {
-        //     backgroundColor: "#8e202b",
-        //   },
-        //   headerTintColor: "#ffffff",
-        // }}
+        name="UploadTab"
+        component={UploadStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      />
+      <Tab.Screen
+        name="EpisodesTab"
+        component={ShowViewStack}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
+      />
+      <Tab.Screen
+        name="LogOutTab"
+        component={LogOutScreen}
+        options={{
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#611821",
+          },
+          headerTintColor: "#ffffff",
+        }}
       />
     </Tab.Navigator>
   );
 }
 
 function StackNavigator() {
+  const colors1 = useTheme().colors;
+
   return (
     <Stack.Navigator
-    //   Default header for pages not speified
-    // screenOptions={{
-    //   headerStyle: {
-    //     backgroundColor: "#fffd9b",
-    //   },
-    //   headerTintColor: "#020101",
-    // }}
+      //   Default header for pages not speified
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
     >
       {/* Home Stack Navigator */}
       {/* <Stack.Screen
@@ -155,7 +215,16 @@ function StackNavigator() {
       /> */}
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={HomeScreen}
+        options={{
+          headerRight: () => (
+            <Button
+              onPress={() => alert("This is a button!")}
+              title="Info"
+              color="#fff"
+            />
+          ),
+        }}
         // options={({ navigation }) => {
         //   return {
         //     headerTitle: () => (
@@ -167,9 +236,80 @@ function StackNavigator() {
         //   };
         // }}
       />
+    </Stack.Navigator>
+  );
+}
+function UsersStack() {
+  const colors1 = useTheme().colors;
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
       <Stack.Screen
+        name="User Stack"
+        component={UserScreen}
+        options={{
+          title: "(User Name HERE)",
+          // headerStyle: {
+          //   backgroundColor: "#8e202b",
+          // },
+          // headerTintColor: "#ffffff",
+          // // headerBackground:,
+          // hideWhenScrolling: true,
+        }}
+      />
+      <Stack.Screen
+        name="Connected Users"
+        component={ConnectedUsersScreen}
+        options={{
+          title: "Connected Users",
+          // headerStyle: {
+          //   backgroundColor: "#8e202b",
+          // },
+          // headerTintColor: "#ffffff",
+          // // headerBackground:,
+          // hideWhenScrolling: true,
+        }}
+      />
+      <Stack.Screen
+        name="My Profile"
+        component={MyProfileScreen}
+        options={{
+          title: "My Profile",
+          // headerStyle: {
+          //   backgroundColor: "#8e202b",
+          // },
+          // headerTintColor: "#ffffff",
+          // // headerBackground:,
+          // hideWhenScrolling: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+function SettingsStack() {
+  const colors1 = useTheme().colors;
+
+  return (
+    <Stack.Navigator
+      //   Default header for pages not speified
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      {/* <Stack.Screen
         name="About"
-        component={About}
+        component={AboutScreen}
         // options={{
         //   title: "It Should Work",
         //   headerStyle: {
@@ -179,10 +319,10 @@ function StackNavigator() {
         //   // headerBackground:,
         //   hideWhenScrolling: true,
         // }}
-      />
+      /> */}
       <Stack.Screen
         name="My Info"
-        component={MyInfo}
+        component={MyInfoScreen}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {
@@ -195,7 +335,7 @@ function StackNavigator() {
       />
       <Stack.Screen
         name="Business"
-        component={Business}
+        component={BusinessScreen}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {
@@ -208,7 +348,81 @@ function StackNavigator() {
       />
       <Stack.Screen
         name="Art"
-        component={Art}
+        component={ArtScreen}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function UploadStack() {
+  const colors1 = useTheme().colors;
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      <Stack.Screen
+        name="Upload"
+        component={UploadContentScreen}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header
+        //         navigation={navigation}
+        //         title="Welcome to Millennial's Prime"
+        //       />
+        //     ),
+        //   };
+        // }}
+      />
+    </Stack.Navigator>
+  );
+}
+function ShowViewStack() {
+  const colors1 = useTheme().colors;
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fffd9b",
+        },
+        headerShown: false,
+        headerTintColor: "#020101",
+      }}
+    >
+      <Stack.Screen
+        name="Episodes"
+        component={ShowViewScreen}
+        // options={({ navigation }) => {
+        //   return {
+        //     headerTitle: () => (
+        //       <Header
+        //         navigation={navigation}
+        //         title="Welcome to Millennial's Prime"
+        //       />
+        //     ),
+        //   };
+        // }}
+      />
+
+      <Stack.Screen
+        name="PrimeShow"
+        component={PrimeShowScreen}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {
@@ -224,12 +438,25 @@ function StackNavigator() {
 }
 
 function AuthStack() {
+  const colors1 = useTheme().colors;
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        // headerTitle: (props) => <LogoTitle {...props} />,
+        headerStyle: {
+          backgroundColor: "#611821",
+        },
+        headerTintColor: colors1.text,
+      }}
+    >
       {/* <Stack.Screen name='Onboarding' component={}/> HAVENT MADE ON BOARDING SCREEN YET*/}
-      <Stack.Screen name="Sign In" component={SignIn} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Password Recovery" component={PasswordRecovery} />
+      <Stack.Screen name="Sign In" component={SignInScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen
+        name="Password Recovery"
+        component={PasswordRecoveryScreen}
+      />
     </Stack.Navigator>
   );
 }

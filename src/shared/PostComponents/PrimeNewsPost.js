@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Button } from "react-native";
 import { WebView } from "react-native-webview";
 import { Video, ResizeMode } from "expo-av";
-import videoFile from "../assets/videos/video.mp4";
-import { globalStyles } from "../styles/global";
 import { LinearGradient } from "expo-linear-gradient";
-import UserInfo from "./PostItems/UserInfo";
+import UserInfo from "./UserInfo";
+import { globalStyles } from "../../../styles/global";
 
-export default function PrimePost({ prime, title, description, name, time }) {
+export default function PrimeNewsPost({
+  prime,
+  title,
+  description,
+  guid,
+  dateUploaded,
+  videoLibraryId,
+  name,
+  time,
+}) {
   // Determins if the post will be red or gold
 
   return (
@@ -22,7 +30,7 @@ export default function PrimePost({ prime, title, description, name, time }) {
       >
         <WebView
           source={{
-            uri: "https://video.bunnycdn.com/embed/147838/ec4cbe34-8750-4695-b252-69f53e51627a",
+            uri: `https://video.bunnycdn.com/embed/${videoLibraryId}/${guid}`,
           }}
           width="100%"
           height="auto"
