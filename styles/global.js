@@ -2,21 +2,113 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const globalStyles = StyleSheet.create({
+  showView: {
+    borderWidth: 1,
+    borderColor: "#b9a054",
+    // backgroundColor: "#fffd9b",
+    padding: 10,
+    borderRadius: 10,
+  },
+  showViewTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 1,
+  },
+  showViewDescription: {},
+  flex1: {
+    flex: 1,
+  },
+
+  // SignIn View
+  signInScreen: {
+    backgroundColor: "#000000",
+    flex: 1,
+    alignItems: "center",
+  },
+  datePicker: {},
+  centerItem: {
+    flex: 1,
+    flexDirection: "column",
+    // alignItems: "center",
+    justifyContent: "center",
+  },
+  registerButtonBox: {
+    width: "100%",
+    height: "30%",
+  },
+  loginButtonBox: {
+    width: "100%",
+    height: "15%",
+  },
+  loginForm: { width: "100%", height: "70%" },
+  registerForm: { width: "100%", height: "85%" },
+  signInForm: {
+    borderRadius: 10,
+    paddingTop: 50,
+    borderWidth: 1,
+    // borderRadius: 2,
+  },
+
+  authModal: { backgroundColor: "#ffffff" },
+
+  formTitle: {
+    // paddingTop: 30,
+    // displayz: flex,
+    // flexDirection: column,
+  },
+  labelInput: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+
+  padding: {
+    padding: 20,
+  },
+  bottomPadding: { paddingBottom: 40 },
+  bottomPadding20: { paddingBottom: 20 },
+  bottomPadding10: { paddingBottom: 10 },
+  groupPadding: {
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  vertPadding: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  vertMargin: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  marginB100: {
+    marginBottom: 100,
+  },
+  // Container Sizes
   container: {
     flex: 1,
     padding: 20,
     paddingTop: 50,
     backgroundColor: "#f7f7f7",
   },
+
+  // Text Types
   titleText: {
     fontFamily: "inter-bold",
     fontSize: 18,
     color: "#020101",
   },
+  labelText: {
+    // fontFamily: "inter-bold",
+    fontSize: 13,
+    color: "#8F92A1",
+    paddingTop: 3,
+    paddingBottom: 3,
+  },
   paragraph: {
     marginVertical: 8,
     lineHeight: 20,
   },
+
+  // Header
   testHeader: {
     backgroundColor: "#020101",
   },
@@ -53,6 +145,8 @@ export const globalStyles = StyleSheet.create({
     height: 50,
     marginVertical: 5,
   },
+
+  // Modal
   modalContent: { flex: 1, padding: 20, paddingTop: 40 },
   modalToggle: {
     marginBottom: 10,
@@ -73,6 +167,14 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     borderRadius: 6,
+    color: "#8F92A1",
+  },
+  settingsInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+    fontSize: 18,
+    borderRadius: 6,
   },
   errorText: {
     color: "crimson",
@@ -85,16 +187,25 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    backgroundColor: "#611821",
+    // backgroundColor: "#611821",
   },
   buttonText: {
     color: "#ffffff",
     fontWeight: "bold",
-    textTransform: "uppercase",
     fontSize: 16,
     textAlign: "center",
   },
-
+  cancelButton: {
+    paddingHorizontal: 20,
+    backgroundColor: "#11182711",
+  },
+  cancelButtonText: {
+    color: "#075985",
+  },
+  confirmButton: {
+    paddingHorizontal: 20,
+    backgroundColor: "#BD2932",
+  },
   // Post Styling
   post: {
     borderRadius: 20,
@@ -171,7 +282,7 @@ export const globalStyles = StyleSheet.create({
 
   postVideo: {
     width: "auto",
-    height: 188,
+    height: 205,
     borderRadius: 10,
     // height: "50%",
     // width: 100,
@@ -220,77 +331,3 @@ export const images = {
     5: require("../assets/images/Tutorial/rating-5.png"),
   },
 };
-
-// const COLORS = {
-//    Background
-//   background: "#F7F7F7",
-//   background2: "#C4C4C4",
-
-//    Form Color
-//   formC: "#ffffff",
-
-//    Text Colors
-//   priT: "#020101",
-//   secT: "#ffffff",
-//   triT: "#8F92A1",
-
-//    Colors
-//   priC: "#611821",
-//   secC: "#8e202b",
-//   triC: "#BD2932",
-//   quaC: "#fffd9b",
-//   quiC: "#ddcd76",
-//   hexC: "#b9a054",
-
-//   NavBar Colors
-//   navbC: "#BD2932",
-//   footC: "#939597",
-
-//   transpWhite: "rgba(255, 255, 255, 0.9)",
-
-//   outline: "#8F92A1",
-// };
-
-// const FONT = {
-//   regular: "Inter",
-//   medium: "DMMedium",
-//   bold: "DMBold",
-// };
-
-// const FONTFAMILY = {
-//    --font: "Inter", sans-serif;
-// };
-
-// const SIZES = {
-//   xSmall: 10,
-//   small: 12,
-//   medium: 16,
-//   large: 20,
-//   xLarge: 24,
-//   xxLarge: 32,
-// };
-
-// const SHADOWS = {
-//   small: {
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 2,
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 3.84,
-//     elevation: 2,
-//   },
-//   medium: {
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 2,
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 5.84,
-//     elevation: 5,
-//   },
-// };
-
-// export { COLORS, FONT, SIZES, SHADOWS };

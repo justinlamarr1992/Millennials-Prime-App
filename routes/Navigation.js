@@ -1,15 +1,17 @@
-import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import { AuthProvider } from "../src/context/AuthContext";
+import AppNav from "./navigation/AppNav";
+import { useColorScheme } from "react-native";
 
-import StackNavigator from "./StackNavigator";
-import TabNavigator from "./TabNavigator";
-import DrawerNavigation from "./DrawerNavigator";
+import colors from "../styles/colors";
 
 export default function Navigation() {
+  const theme = useColorScheme();
   return (
-    <NavigationContainer>
-      <StackNavigator />
-      {/* <DrawerNavigation /> */}
-      {/* <TabNavigator /> */}
-    </NavigationContainer>
+    <AuthProvider>
+      <AppNav />
+    </AuthProvider>
   );
 }
+
+function AuthStack() {}

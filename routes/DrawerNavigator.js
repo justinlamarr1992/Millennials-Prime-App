@@ -4,8 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Header from "../shared/Header";
 
-import Home from "../screens/Home";
-import About from "../screens/About";
+import Home from "../src/BottomTab/Home";
+import About from "../src/Stack/About";
 import { StyleSheet } from "react-native-web";
 
 import { globalStyles } from "../styles/global";
