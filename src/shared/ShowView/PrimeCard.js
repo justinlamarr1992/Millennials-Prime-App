@@ -5,13 +5,18 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useTheme, useNavigation } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
+import { LinearGradient } from "expo-linear-gradient";
+
 import UserInfo from "../PostComponents/UserInfo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function PrimeCard({
+  userPosting,
+  id,
+  prime,
   thumbnail,
   videoLibraryId,
   guid,
@@ -24,7 +29,12 @@ export default function PrimeCard({
 }) {
   const navigation = useNavigation();
 
+  var confirm;
+
   const colors = useTheme().colors;
+
+  console.log(id, description, prime, userPosting);
+
   const pressedVideo = () => {
     navigation.navigate("PrimeShow", {
       guid: guid,
@@ -55,45 +65,85 @@ export default function PrimeCard({
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
   };
+
+  const checkOriginal = () => {
+    console.log(id);
+    userPosting = `"${userPosting}"`;
+    console.log(userPosting);
+    if (id === userPosting) {
+      // console.log("They match", id, userPosting);
+      confirm = true;
+      return;
+    }
+  };
+  checkOriginal();
+
   return (
-    <View
+    <LinearGradient
       key={key}
       style={[
+        globalStyles.post,
         globalStyles.flexRow,
         globalStyles.showView,
         globalStyles.vertMargin,
-        { backgroundColor: colors.primCar },
       ]}
+      colors={
+        prime
+          ? ["#b9a054", "#cbb665", "#ddcd76", "#eee588", "#fffd9b"]
+          : ["#bd2932", "#a5242f", "#8e202b", "#771c26", "#611821"]
+      }
     >
       <TouchableOpacity
         onPress={pressedVideo}
         style={[globalStyles.primeCardLeft]}
       >
-        <Text style={[globalStyles.showViewTitle, { color: colors.primCarT }]}>
+        <Text
+          style={
+            prime
+              ? [globalStyles.showViewTitle, { color: colors.primCarT }]
+              : [globalStyles.showViewTitle, { color: colors.showCarT }]
+          }
+        >
           {title}
         </Text>
         <Text
           style={[globalStyles.showViewDescription, { color: colors.primCarT }]}
         >
-          {description ? description : "No Description for now"}
+          {/* "No Description for now" */}
+          {!description ? description : "No Description for now"}
         </Text>
         <Text
           style={[
             globalStyles.showViewDescription,
             globalStyles.bottomPadding10,
-            { color: colors.primeCarST },
+            { color: colors.triT },
           ]}
         >
-          {dateUploaded ? dateUploaded : "Loading"}
+          Date Uploaded: {dateUploaded ? dateUploaded : "Loading"}
+        </Text>
+        {/* Add a symbol indication that this is a prime post or only for users with prime */}
+        <Text
+          style={[
+            globalStyles.showViewDescription,
+            globalStyles.bottomPadding10,
+            { color: colors.triT },
+          ]}
+        >
+          Prime: {prime ? "True" : "False"}
         </Text>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[globalStyles.primeCardRight]}
-        onPress={deleteVideo}
-      >
-        <Ionicons name="trash" size="large" color="#611821" />
-      </TouchableOpacity>
-    </View>
+      {confirm && (
+        <TouchableOpacity
+          style={[globalStyles.primeCardRight]}
+          onPress={deleteVideo}
+        >
+          {prime ? (
+            <Ionicons name="trash" size="large" color="#611821" />
+          ) : (
+            <Ionicons name="trash" size="large" color="#fffd9b" />
+          )}
+        </TouchableOpacity>
+      )}
+    </LinearGradient>
   );
 }

@@ -7,12 +7,13 @@ import axios from "../../API/axios";
 import PrimeCard from "../../shared/ShowView/PrimeCard";
 
 export default function ShowView() {
-  const { auth, isLoading, roles } = useContext(AuthContext);
+  const { auth, isLoading, roles, id } = useContext(AuthContext);
   const navigation = useNavigation;
   const colors = useTheme().colors;
 
   //   const [videos, setVideos] = useState({});
   const [videoData, setVideoData] = useState();
+  const [originalUser, setOriginalUser] = useState(false);
   // var videoData = [];
   let mappedVideos;
   //   Get Library Videos from bunny.net
@@ -62,11 +63,14 @@ export default function ShowView() {
         <Text style={{ color: colors.priT }}>Roles</Text>
         {videoData?.map((videos) => (
           <PrimeCard
+            id={id}
+            userPosting={videos.metaTags[3].value}
+            prime={videos.metaTags[2]}
             key={videos.guid}
             videoLibraryId={videos.videoLibraryId}
             guid={videos.guid}
             title={videos.title}
-            description={videos.videoLibraryId}
+            description={videos.metaTags[1].value}
             dateUploaded={videos.dateUploaded}
           />
         ))}

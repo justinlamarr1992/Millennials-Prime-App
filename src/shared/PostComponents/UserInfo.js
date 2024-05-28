@@ -5,6 +5,7 @@ import { globalStyles } from "../../../styles/global";
 import { useTheme } from "@react-navigation/native";
 import pic from "../../../assets/images/MillennialsPrimeLogoNB.png";
 export default function UserInfo() {
+  // TODO: come back and change so that prime is past through as child to determine what colors
   // export default function UserInfo({ prime, name, time }) {
   let name = "Test Name";
   let time = Date.now();

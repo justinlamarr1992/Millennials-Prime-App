@@ -28,6 +28,9 @@ import Business from "../../src/screens/settings/Business";
 import Art from "../../src/screens/settings/Art";
 import About from "../../src/screens/auth/About";
 
+import User from "../../src/screens/social/User";
+import ConnectedUsers from "../../src/screens/social/ConnectedUsers";
+
 import ShowView from "../../src/screens/showview/ShowView";
 import PrimeShow from "../../src/screens/showview/PrimeShow";
 import UploadContent from "../../src/screens/upload/UploadContent";
@@ -39,7 +42,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useTheme } from "@react-navigation/native";
-import User from "../../src/screens/social/User";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -303,6 +305,19 @@ function UsersStack() {
       <Stack.Screen
         name="My Profile"
         component={User}
+        // options={{
+        //   title: "I Hope this is it",
+        //   headerStyle: {
+        //     backgroundColor: "#8e202b",
+        //   },
+        //   headerTintColor: "#ffffff",
+        //   // headerBackground:,
+        //   hideWhenScrolling: true,
+        // }}
+      />
+      <Stack.Screen
+        name="Connected Users"
+        component={ConnectedUsers}
         // options={{
         //   title: "I Hope this is it",
         //   headerStyle: {

@@ -255,7 +255,7 @@ export const globalStyles = StyleSheet.create({
     shadowRadius: 3,
   },
   postContent: {
-    marginVertical: 5,
+    marginVertical: 2,
   },
   postDescription: {
     color: "#8F92A1",
@@ -279,7 +279,7 @@ export const globalStyles = StyleSheet.create({
   // User Info
   postUserInfo: {
     flexDirection: "row",
-    paddingBottom: 20,
+    paddingBottom: 5,
   },
   postUserInfoImage: {
     width: "100%",

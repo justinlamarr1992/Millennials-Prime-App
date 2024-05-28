@@ -190,22 +190,22 @@ export default function Home() {
           </Text> */}
 
           {id ? (
-            <Text style={{ color: colors.quaC }}>ID is ood</Text>
+            <Text style={{ color: colors.hexC }}>ID is ood</Text>
           ) : (
             <Text style={{ color: colors.triC }}>No ID</Text>
           )}
           {roles ? (
-            <Text style={{ color: colors.quaC }}>Roles is Good</Text>
+            <Text style={{ color: colors.hexC }}>Roles is Good</Text>
           ) : (
             <Text style={{ color: colors.triC }}>No Roles</Text>
           )}
           {accessToken ? (
-            <Text style={{ color: colors.quaC }}>AccessToken is Good</Text>
+            <Text style={{ color: colors.hexC }}>AccessToken is Good</Text>
           ) : (
             <Text style={{ color: colors.triC }}>No AccessToken</Text>
           )}
           {auth ? (
-            <Text style={{ color: colors.quaC }}>Auth Information is Good</Text>
+            <Text style={{ color: colors.hexC }}>Auth Information is Good</Text>
           ) : (
             <Text style={{ color: colors.triC }}>No Auth Information</Text>
           )}
